@@ -59,6 +59,7 @@ export default function Carousel() {
     <main
       className="relative w-full max-w-7xl mx-auto rounded-2xl overflow-hidden flex"
       style={{
+        height: "500px",
         backgroundImage: `url(${slides[current].image})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
@@ -66,7 +67,7 @@ export default function Carousel() {
       }}
     >
       {/* Overlay para escurecer o fundo */}
-      <div className="absolute inset-0 "></div>
+      <div className="absolute inset-0  "></div>
 
       {/* Conteúdo do slide principal */}
       <section className="relative z-10 flex-1 p-12 max-w-2xl flex flex-col justify-center text-white">
@@ -81,10 +82,8 @@ export default function Carousel() {
         </button>
       </section>
 
-      {/* Miniaturas à direita */}
-      <aside className="relative z-10 flex items-center space-x-6 pr-12">
+      <aside className="relative z-10 items-center space-x-6 pr-12 hidden md:flex">
         {slides.map((slide, idx) => {
-          // não mostrar miniatura do slide atual
           if (idx === current) return null;
           return (
             <motion.img
@@ -92,13 +91,8 @@ export default function Carousel() {
               src={slide.image}
               alt={slide.title}
               onClick={() => setCurrent(idx)}
-              className="w-32 h-48 rounded-xl object-cover cursor-pointer shadow-lg hover:scale-105 transition-transform duration-300"
+              className="w-32 h-48 rounded-xl object-cover cursor-pointer hover:scale-105 transition-transform duration-300 " 
               whileHover={{ scale: 1.1 }}
-              style={{
-                filter: "brightness(0.75)",
-                boxShadow:
-                  idx === current ? "0 0 20px 5px rgba(255,255,255,0.8)" : "",
-              }}
             />
           );
         })}
