@@ -20,7 +20,7 @@ const Background: React.FC<{ children: React.ReactNode }> = ({
       </div>
       <div className="absolute inset-0 z-0 bg-gradient-to-br from-neutral-700 via-gray-800 to-neutral-900 opacity-60" />
 
-      <div className="relative z-10 min-h-screen p-4  ">{children}</div>
+      <div className="relative z-10 min-h-screen p-4 ">{children}</div>
     </div>
   );
 };
