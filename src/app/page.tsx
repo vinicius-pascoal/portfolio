@@ -1,13 +1,16 @@
 import Carousel from "@/components/Carousel";
+import Background from "@/components/Background";
 
 export default function Home() {
 
   return (
-    <div className="">
-      <h1>Welcome to my portfolio!</h1>
-    <div className="">
-      <Carousel />
-    </div>
-    </div>
+    <Background>
+      <header className="bg-gray-800 text-white p-4">
+        <h1 className="text-2xl font-bold">Vinicius Pascoal</h1>
+      </header>
+      <div className="mt-10 ">
+        <Carousel />
+      </div>
+    </Background>
   );
 }

@@ -45,13 +45,6 @@ const slides: Slide[] = [
     image:
       "https://theawesomer.com/photos/2017/07/simon_stalenhag_the_electric_state_6.jpg",
   },
-  {
-    title: "The Migration",
-    description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.",
-    image:
-      "https://da.se/app/uploads/2015/09/simon-december1994.jpg",
-  },
 ];
 
 export default function Carousel() {
