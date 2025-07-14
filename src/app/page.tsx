@@ -8,28 +8,30 @@ import Contato from "@/components/Contato";
 
 import personalImage from "../images/perfil.jpg";
 
-
 export default function Home() {
   return (
     <Background>
-      <header className=" text-white mx-auto text-center  ">
+      <header className=" text-white mx-auto text-center w-fit flex align-center items-center p-6
+      absolute top-0 right-0 z-20">
+        <div className="mr-4">
+        <h1 className="text-2xl font-bold">Vinicius Pascoal</h1>
+        <p className="text-gray-300">Full Stack Developer</p>
+        </div>
         <Image
           src={personalImage}
           alt="Vinicius Pascoal"
           width={100}
           height={100}
-          className="rounded-full mx-auto my-4 border-2 border-gray-800 shadow-lg"
+          className="rounded-full mx-auto my-4 border-2 border-gray-300 shadow-lg "
         />
-        <h1 className="text-2xl font-bold">Vinicius Pascoal</h1>
-        <p className="text-gray-400">Full Stack Developer</p>
       </header>
       <div className="">
         <Carousel />
       </div>
-      <Sobre/>
+      <Sobre />
       <div className=" bg-gray-900">
         <h2 className="text-3xl text-white text-center pt-3">Projetos :</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 p-6">
           <Item nome="Projeto 1" descricao="Descrição do projeto 1" url="https://github.com/vinicius-pascoal/projeto1" />
           <Item nome="teste" descricao="Lorem lorem" url="https://github.com/vinicius-pascoal"/>
           <Item nome="teste" descricao="Lorem lorem" url="https://github.com/vinicius-pascoal"/>
