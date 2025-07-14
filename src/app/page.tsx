@@ -4,13 +4,17 @@ import Item from "@/components/Item";
 import Image from "next/image";
 
 import personalImage from "../images/perfil.jpg";
+import whatsLogo from "../images/social/whats.svg";
+import instagramLogo from "../images/social/instagram.svg";
+import githubLogo from "../images/social/github.svg";
+import linkedinLogo from "../images/social/linkedin.svg";
 
 export default function Home() {
   const numero = `79991750501`;
   const whatsappUrl = `https://api.whatsapp.com/send?phone=55${numero}&text=Olá Vinicius, gostaria de entrar em contato!`;
   return (
     <Background>
-      <header className=" text-white mx-auto text-center rounded-b-lg">
+      <header className=" text-white mx-auto text-center  ">
         <Image
           src={personalImage}
           alt="Vinicius Pascoal"
@@ -64,7 +68,6 @@ export default function Home() {
           <Item />
         </div>
       </div>
-      {/* contatos */}
       <div className=" p-6 text-center">
         <h2 className="text-3xl text-white mb-4">Contato</h2>
         <p className="text-gray-400 mb-4">
@@ -76,8 +79,15 @@ export default function Home() {
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-white bg-green-500 hover:bg-green-600 px-4 py-2 rounded transition-colors"
+            className="text-white bg-green-500 hover:bg-green-600 px-4 py-2 rounded transition-colors flex items-center"
           >
+            <Image
+              src={whatsLogo}
+              alt="WhatsApp Logo"
+              width={24}
+              height={24}
+              className="inline-block mr-2"
+            />
             WhatsApp
           </a>
           <a
@@ -86,6 +96,13 @@ export default function Home() {
             rel="noopener noreferrer"
             className="text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded transition-colors"
           >
+            <Image
+              src={instagramLogo}
+              alt="Instagram Logo"
+              width={24}
+              height={24}
+              className="inline-block mr-2"
+            />
             Instagram
           </a>
           <a
@@ -94,6 +111,13 @@ export default function Home() {
             rel="noopener noreferrer"
             className="text-white bg-gray-700 hover:bg-gray-800 px-4 py-2 rounded transition-colors"
           >
+            <Image
+              src={githubLogo}
+              alt="GitHub Logo"
+              width={24}
+              height={24}
+              className="inline-block mr-2"
+            />
             GitHub
           </a>
           <a
@@ -102,6 +126,13 @@ export default function Home() {
             rel="noopener noreferrer"
             className="text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded transition-colors"
           >
+            <Image
+              src={linkedinLogo}
+              alt="LinkedIn Logo"
+              width={24}
+              height={24}
+              className="inline-block mr-2"
+            />
             LinkedIn
           </a>
         </div>
