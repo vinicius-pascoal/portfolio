@@ -1,20 +1,26 @@
 import Image from "next/image";
-import teste from "../images/teste.jpg";
+import Git from "../images/social/github.svg";
 
-export default function Item() {
+interface ItemProps {
+  nome: string;
+  descricao: string;
+  url: string;
+}
+
+export default function Item({ nome, descricao, url }: ItemProps) {
   return (
-    <div className="flex items-center justify-baseline p-6 bg-gray-800 text-white rounded-lg shadow-lg mx-10 my-10">
+    <a href={url} className="flex items-center justify-baseline p-6 bg-gray-800 text-white rounded-lg shadow-lg mx-10 my-10">
       <Image
-        src={teste}
+        src={Git}
         alt="Item Image"
         width={50}
         height={50}
         className="rounded-lg shadow-lg mr-6"
       />
       <div>
-      <h2 className="text-2xl font-bold mb-1">Item Component</h2>
-      <p>This is a placeholder for the Item component.</p>
+      <h2 className="text-2xl font-bold mb-1">{nome}</h2>
+      <p>{descricao}</p>
       </div>
-    </div>
+    </a>
   );
 }

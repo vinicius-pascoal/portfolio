@@ -10,7 +10,7 @@ export default function Sobre() {
           e crescer na área de desenvolvimento.
         </p>
         <h2 className="text-3xl text-white text-center pt-3">
-          linguagens e tecnologias que domino:
+          linguagens e tecnologias que domino :
         </h2>
         <ul className="text-gray-400 text-center p-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4  ">
           <li>JavaScript</li>

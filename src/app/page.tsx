@@ -1,9 +1,10 @@
+import Image from "next/image";
+
 import Background from "@/components/Background";
 import Sobre from "@/components/Sobre";
 import Carousel from "@/components/Carousel";
 import Item from "@/components/Item";
 import Contato from "@/components/Contato";
-import Image from "next/image";
 
 import personalImage from "../images/perfil.jpg";
 
@@ -29,11 +30,11 @@ export default function Home() {
       <div className=" bg-gray-900">
         <h2 className="text-3xl text-white text-center pt-3">Projetos :</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
-          <Item />
-          <Item />
-          <Item />
-          <Item />
-          <Item />
+          <Item nome="Projeto 1" descricao="Descrição do projeto 1" url="https://github.com/vinicius-pascoal/projeto1" />
+          <Item nome="teste" descricao="Lorem lorem" url="https://github.com/vinicius-pascoal"/>
+          <Item nome="teste" descricao="Lorem lorem" url="https://github.com/vinicius-pascoal"/>
+          <Item nome="teste" descricao="Lorem lorem" url="https://github.com/vinicius-pascoal"/>
+          <Item nome="teste" descricao="Lorem lorem" url="https://github.com/vinicius-pascoal"/>
         </div>
       </div>
       <Contato />
