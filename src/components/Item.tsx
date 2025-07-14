@@ -3,7 +3,7 @@ import teste from "../images/teste.jpg";
 
 export default function Item() {
   return (
-    <div className="flex items-center justify-baseline p-6 bg-gray-800 text-white rounded-lg shadow-lg mx-20 my-10">
+    <div className="flex items-center justify-baseline p-6 bg-gray-800 text-white rounded-lg shadow-lg mx-10 my-10">
       <Image
         src={teste}
         alt="Item Image"

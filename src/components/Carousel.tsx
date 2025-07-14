@@ -57,7 +57,7 @@ export default function Carousel() {
 
   return (
     <main
-      className="relative w-full max-w-7xl mx-auto rounded-2xl overflow-hidden flex"
+      className="relative w-full mx-auto overflow-hidden flex"
       style={{
         height: "500px",
         backgroundImage: `url(${slides[current].image})`,
