@@ -14,29 +14,25 @@ const slides: Slide[] = [
     title: "Lossless Youths",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.",
-    image:
-      "https://cdn.mos.cms.futurecdn.net/dP3N4qnEZ4tCTCLq59iysd.jpg",
+    image: "https://cdn.mos.cms.futurecdn.net/dP3N4qnEZ4tCTCLq59iysd.jpg",
   },
   {
     title: "Estrange Bond",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.",
-    image:
-      "https://i.redd.it/tc0aqpv92pn21.jpg",
+    image: "https://i.redd.it/tc0aqpv92pn21.jpg",
   },
   {
     title: "The Gate Keeper",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.",
-    image:
-      "https://wharferj.files.wordpress.com/2015/11/bio_north.jpg",
+    image: "https://wharferj.files.wordpress.com/2015/11/bio_north.jpg",
   },
   {
     title: "Last Trace Of Us",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.",
-    image:
-      "https://images7.alphacoders.com/878/878663.jpg",
+    image: "https://images7.alphacoders.com/878/878663.jpg",
   },
   {
     title: "Urban Decay",
@@ -49,7 +45,7 @@ const slides: Slide[] = [
 
 export default function Carousel() {
   const [current, setCurrent] = useState(0);
-
+  
   const prevSlide = () =>
     setCurrent((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
   const nextSlide = () =>
@@ -91,7 +87,7 @@ export default function Carousel() {
               src={slide.image}
               alt={slide.title}
               onClick={() => setCurrent(idx)}
-              className="w-32 h-48 rounded-xl object-cover cursor-pointer hover:scale-105 transition-transform duration-300 " 
+              className="w-32 h-48 rounded-xl object-cover cursor-pointer hover:scale-105 transition-transform duration-300 "
               whileHover={{ scale: 1.1 }}
             />
           );
@@ -113,14 +109,14 @@ export default function Carousel() {
             stroke="currentColor"
             strokeWidth={2}
           >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M15 19l-7-7 7-7"
+            />
           </svg>
         </button>
-        <button
-          onClick={nextSlide}
-          aria-label="Next Slide"
-          className="btn-nav"
-        >
+        <button onClick={nextSlide} aria-label="Next Slide" className="btn-nav">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             className="h-8 w-8 text-white"
@@ -129,7 +125,11 @@ export default function Carousel() {
             stroke="currentColor"
             strokeWidth={2}
           >
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M9 5l7 7-7 7"
+            />
           </svg>
         </button>
       </nav>
@@ -137,7 +137,6 @@ export default function Carousel() {
       <style jsx>{`
         .btn-nav {
           background-color: rgba(255 255 255 / 0.5);
-          border: 2px solid rgba(0 0 0 / 0.6);
           border-radius: 9999px;
           padding: 0.5rem;
           cursor: pointer;
