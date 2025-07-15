@@ -9,6 +9,7 @@ interface Slide {
   title: string;
   description: string;
   image: any;
+  url: string;
 }
 
 const slides: Slide[] = [
@@ -17,24 +18,28 @@ const slides: Slide[] = [
     description:
       "Jogo de palavras cruzadas, onde você pode testar seu conhecimento e aprender novas palavras.",
     image:crossword,
+    url: "https://crossword-liart.vercel.app",
   },
   {
     title: "Estrange Bond",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.",
     image: "https://i.redd.it/tc0aqpv92pn21.jpg",
+    url: "https://estrangebond.vercel.app/",
   },
   {
     title: "The Gate Keeper",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.",
     image: "https://wharferj.files.wordpress.com/2015/11/bio_north.jpg",
+    url: "https://thegatekeeper.vercel.app/",
   },
   {
     title: "Last Trace Of Us",
     description:
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.",
     image: "https://images7.alphacoders.com/878/878663.jpg",
+    url: "https://lasttraceofus.vercel.app/",
   },
   {
     title: "Urban Decay",
@@ -42,6 +47,7 @@ const slides: Slide[] = [
       "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.",
     image:
       "https://theawesomer.com/photos/2017/07/simon_stalenhag_the_electric_state_6.jpg",
+    url: "https://urbandecay.vercel.app/",
   },
 ];
 
@@ -68,16 +74,16 @@ export default function Carousel() {
       <div className="absolute inset-0  "></div>
 
       {/* Conteúdo do slide principal */}
-      <section className="relative z-10 flex-1 p-5 max-w-2xl flex flex-col justify-center my-auto text-white bg-rgba(0, 0, 0, 0.2) backdrop-blur-md h-fit rounded-lg mr-0 md:mr-12">
+      <section className="relative z-10 flex-1 p-5 max-w-2xl flex flex-col justify-center my-auto text-white bg-rgba(0, 0, 0, 0.2) backdrop-blur-md h-fit rounded-lg mr-0 md:mx-6">
         <h2 className="uppercase font-extrabold text-3xl md:text-5xl mb-6 drop-shadow-md">
           "{slides[current].title}"
         </h2>
         <p className="mb-8 max-w-lg leading-relaxed drop-shadow-md">
           {slides[current].description}
         </p>
-        <button className="w-max border border-white px-6 py-2 rounded hover:bg-white hover:text-black transition drop-shadow-md">
+        <a href={slides[current].url} className="w-max border border-white px-6 py-2 rounded hover:bg-white hover:text-black transition drop-shadow-md">
           Read More
-        </button>
+        </a>
       </section>
 
       <aside className="relative z-10 items-center space-x-6 pr-12 hidden md:flex">
