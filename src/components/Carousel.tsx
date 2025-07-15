@@ -3,18 +3,20 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
+import crossword from "../images/projetos/crossword.png"
+
 interface Slide {
   title: string;
   description: string;
-  image: string;
+  image: any;
 }
 
 const slides: Slide[] = [
   {
-    title: "Lossless Youths",
+    title: "Palavra Cruzada",
     description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.",
-    image: "https://cdn.mos.cms.futurecdn.net/dP3N4qnEZ4tCTCLq59iysd.jpg",
+      "Jogo de palavras cruzadas, onde você pode testar seu conhecimento e aprender novas palavras.",
+    image:crossword,
   },
   {
     title: "Estrange Bond",
@@ -56,7 +58,7 @@ export default function Carousel() {
       className="relative w-full mx-auto overflow-hidden flex"
       style={{
         height: "500px",
-        backgroundImage: `url(${slides[current].image})`,
+        backgroundImage: `url(${slides[current].image.src || slides[current].image})`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -66,7 +68,7 @@ export default function Carousel() {
       <div className="absolute inset-0  "></div>
 
       {/* Conteúdo do slide principal */}
-      <section className="relative z-10 flex-1 p-12 max-w-2xl flex flex-col justify-center text-white">
+      <section className="relative z-10 flex-1 p-5 max-w-2xl flex flex-col justify-center my-auto text-white bg-rgba(0, 0, 0, 0.2) backdrop-blur-md h-fit rounded-lg mr-0 md:mr-12">
         <h2 className="uppercase font-extrabold text-3xl md:text-5xl mb-6 drop-shadow-md">
           "{slides[current].title}"
         </h2>
@@ -84,7 +86,7 @@ export default function Carousel() {
           return (
             <motion.img
               key={idx}
-              src={slide.image}
+              src={typeof slide.image === "string" ? slide.image : slide.image.src}
               alt={slide.title}
               onClick={() => setCurrent(idx)}
               className="w-32 h-48 rounded-xl object-cover cursor-pointer hover:scale-105 transition-transform duration-300 "
