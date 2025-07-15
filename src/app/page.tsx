@@ -32,11 +32,15 @@ export default function Home() {
       <div className=" bg-gray-900">
         <h2 className="text-3xl text-white text-center pt-3">Projetos :</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 p-6">
-          <Item nome="Projeto 1" descricao="Descrição do projeto 1" url="https://github.com/vinicius-pascoal/projeto1" />
-          <Item nome="teste" descricao="Lorem lorem" url="https://github.com/vinicius-pascoal"/>
-          <Item nome="teste" descricao="Lorem lorem" url="https://github.com/vinicius-pascoal"/>
-          <Item nome="teste" descricao="Lorem lorem" url="https://github.com/vinicius-pascoal"/>
-          <Item nome="teste" descricao="Lorem lorem" url="https://github.com/vinicius-pascoal"/>
+          <Item nome="Cestas E Afetos" descricao="Site de venda de cestas" url="https://github.com/vinicius-pascoal/cestas-E-afetos" />
+          <Item nome="Crossword" descricao="Site de palavra cruzada" url="https://github.com/vinicius-pascoal/palavra-cruzada"/>
+          <Item nome="Lista De Tarefas" descricao="Projeto de lista de tarefas" url="https://github.com/vinicius-pascoal/Todo-List"/>
+          <Item nome="Cardapio Digital" descricao="Label de cardapio digital" url="https://github.com/vinicius-pascoal/cardapio-digital"/>
+          <Item nome="Forca" descricao="Projeto de jogo da forca" url="https://github.com/vinicius-pascoal/forca"/>
+          <Item nome="tiradentes-banking" descricao="Desafio da materia de residencia" url="https://github.com/vinicius-pascoal/tiradentes-banking"/>
+          <Item nome="API de cursos" descricao="API para uma plataforma de cursos" url="https://github.com/vinicius-pascoal/squad_17_api_project"/>
+          <Item nome="API de lanchonete" descricao="API para uma lanchonete" url="https://github.com/vinicius-pascoal/project-raio"/>
+          <Item nome="CRUD" descricao="Um CRUD simples" url="https://github.com/vinicius-pascoal/projeto-crud"/>
         </div>
       </div>
       <Contato />
