@@ -34,7 +34,7 @@ export default function Contato() {
             WhatsApp
           </a>
           <a
-            href="instagram.com/viniciuspascoal013"
+            href="https://www.instagram.com/vinicius_pascoal_q/?next=%2F"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded transition-colors"
@@ -49,7 +49,7 @@ export default function Contato() {
             Instagram
           </a>
           <a
-            href="github.com/viniciuspascoal013"
+            href="https://github.com/vinicius-pascoal"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white bg-gray-700 hover:bg-gray-800 px-4 py-2 rounded transition-colors"
@@ -64,7 +64,7 @@ export default function Contato() {
             GitHub
           </a>
           <a
-            href="linkedin.com/in/vinicius-pascoal-013"
+            href="https://www.linkedin.com/in/vinicius-pascoal-queiroz-maynard-38854024a/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-white bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded transition-colors"
