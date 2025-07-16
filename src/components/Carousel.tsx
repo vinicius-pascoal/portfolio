@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-import crossword from "../images/projetos/crossword.png"
+import crossword from "../images/projetos/crossword.png";
 
 interface Slide {
   title: string;
@@ -17,7 +17,7 @@ const slides: Slide[] = [
     title: "Palavra Cruzada",
     description:
       "Jogo de palavras cruzadas, onde você pode testar seu conhecimento e aprender novas palavras.",
-    image:crossword,
+    image: crossword,
     url: "https://crossword-liart.vercel.app",
   },
   {
@@ -53,7 +53,7 @@ const slides: Slide[] = [
 
 export default function Carousel() {
   const [current, setCurrent] = useState(0);
-  
+
   const prevSlide = () =>
     setCurrent((prev) => (prev === 0 ? slides.length - 1 : prev - 1));
   const nextSlide = () =>
@@ -64,7 +64,9 @@ export default function Carousel() {
       className="relative w-full mx-auto overflow-hidden flex"
       style={{
         height: "500px",
-        backgroundImage: `url(${slides[current].image.src || slides[current].image})`,
+        backgroundImage: `url(${
+          slides[current].image.src || slides[current].image
+        })`,
         backgroundSize: "cover",
         backgroundPosition: "center",
         backgroundRepeat: "no-repeat",
@@ -73,18 +75,42 @@ export default function Carousel() {
       {/* Overlay para escurecer o fundo */}
       <div className="absolute inset-0  "></div>
 
-      {/* Conteúdo do slide principal */}
-      <section className="relative z-10 flex-1 p-5 max-w-2xl flex flex-col justify-center my-auto text-white bg-rgba(0, 0, 0, 0.2) backdrop-blur-md h-fit rounded-lg mr-0 md:mx-6">
-        <h2 className="uppercase font-extrabold text-3xl md:text-5xl mb-6 drop-shadow-md">
+      <motion.section
+        key={current} 
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.6, ease: "easeOut" }}
+        className="relative z-10 flex-1 p-5 max-w-2xl flex flex-col justify-center my-auto text-white bg-rgba(0, 0, 0, 0.2) backdrop-blur-md h-fit rounded-lg mr-0 md:mx-6"
+      >
+        <motion.h2
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="uppercase font-extrabold text-3xl md:text-5xl mb-6 drop-shadow-md"
+        >
           "{slides[current].title}"
-        </h2>
-        <p className="mb-8 max-w-lg leading-relaxed drop-shadow-md">
+        </motion.h2>
+
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.4, duration: 0.5 }}
+          className="mb-8 max-w-lg leading-relaxed drop-shadow-md"
+        >
           {slides[current].description}
-        </p>
-        <a href={slides[current].url} className="w-max border border-white px-6 py-2 rounded hover:bg-white hover:text-black transition drop-shadow-md">
+        </motion.p>
+
+        <motion.a
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.6, duration: 0.5 }}
+          href={slides[current].url}
+          className="w-max border border-white px-6 py-2 rounded hover:bg-white hover:text-black transition drop-shadow-md"
+        >
           Read More
-        </a>
-      </section>
+        </motion.a>
+      </motion.section>
 
       <aside className="relative z-10 items-center space-x-6 pr-12 hidden md:flex">
         {slides.map((slide, idx) => {
@@ -92,7 +118,9 @@ export default function Carousel() {
           return (
             <motion.img
               key={idx}
-              src={typeof slide.image === "string" ? slide.image : slide.image.src}
+              src={
+                typeof slide.image === "string" ? slide.image : slide.image.src
+              }
               alt={slide.title}
               onClick={() => setCurrent(idx)}
               className="w-32 h-48 rounded-xl object-cover cursor-pointer hover:scale-105 transition-transform duration-300 "
