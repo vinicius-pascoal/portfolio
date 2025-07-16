@@ -7,12 +7,22 @@ import Item from "@/components/Item";
 import Contato from "@/components/Contato";
 
 import personalImage from "../images/perfil.jpg";
+import paper from "../images/cartographer.png";
 
 export default function Home() {
   return (
     <Background>
-      <header className=" text-white mx-auto text-center w-fit flex align-center items-center p-6
-      absolute top-0 right-0 z-20">
+      <header className=" text-white mx-auto text-center w-fit flex align-center items-center py-1 px-6
+      fixed top-0 right-0 z-20 rounded-lg shadow-lg h-fit" 
+      style={{ 
+          //use o mooning como imagem de fundo
+          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
+          backgroundImage: "url(" + paper.src + ")",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backdropFilter: "blur(10px)",
+         }}>
         <div className="mr-4">
         <h1 className="text-2xl font-bold">Vinicius Pascoal</h1>
         <p className="text-gray-300">Full Stack Developer</p>

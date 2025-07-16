@@ -4,6 +4,12 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
 import crossword from "../images/projetos/crossword.png";
+import cestasAfetos from "../images/projetos/cestasAfetos2.png";
+import todoList from "../images/projetos/todoList.png";
+import forca from "../images/projetos/forca.png";
+import cardapio from "../images/projetos/cardapio.png";
+import paper from "../images/cartographer.png";
+  
 
 interface Slide {
   title: string;
@@ -21,33 +27,33 @@ const slides: Slide[] = [
     url: "https://crossword-liart.vercel.app",
   },
   {
-    title: "Estrange Bond",
+    title: "Lista De Tarefas",
     description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.",
-    image: "https://i.redd.it/tc0aqpv92pn21.jpg",
-    url: "https://estrangebond.vercel.app/",
+      "um aplicativo de lista de tarefas, onde você pode adicionar, remover e marcar tarefas como concluídas.",
+    image: todoList,
+    url: "https://vinicius-pascoal.github.io/Todo-List/",
   },
   {
-    title: "The Gate Keeper",
+    title: "Cardápio Digital",
     description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.",
-    image: "https://wharferj.files.wordpress.com/2015/11/bio_north.jpg",
-    url: "https://thegatekeeper.vercel.app/",
+      "Cardápio digital para restaurantes, onde você pode visualizar os pratos e fazer pedidos.",
+    image: cardapio,
+    url: "https://cardapio-digital-bay.vercel.app",
   },
   {
-    title: "Last Trace Of Us",
+    title: "Cestas E Afetos",
     description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.",
-    image: "https://images7.alphacoders.com/878/878663.jpg",
-    url: "https://lasttraceofus.vercel.app/",
+      "site de vendas de cestas de café da manhã, onde você pode escolher entre diversas opções.",
+    image: cestasAfetos,
+    url: "https://cestas-e-afetos.vercel.app",
   },
   {
-    title: "Urban Decay",
+    title: "Forca",
     description:
-      "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Tempore fuga voluptatum, iure corporis inventore praesentium nisi. Id laboriosam ipsam enim.",
+      "Jogo da forca, onde você pode testar seu conhecimento e adivinhar palavras.",
     image:
-      "https://theawesomer.com/photos/2017/07/simon_stalenhag_the_electric_state_6.jpg",
-    url: "https://urbandecay.vercel.app/",
+      forca,
+    url: "https://vinicius-pascoal.github.io/forca/",
   },
 ];
 
@@ -81,7 +87,16 @@ export default function Carousel() {
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -20 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className="relative z-10 flex-1 p-5 max-w-2xl flex flex-col justify-center my-auto text-white bg-rgba(0, 0, 0, 0.2) backdrop-blur-md h-fit rounded-lg mr-0 md:mx-6"
+        className="relative z-10 flex-1 p-5 max-w-2xl flex flex-col justify-center my-auto text-white h-fit rounded-lg mr-0 md:mx-6"
+        style={{ 
+          //use o mooning como imagem de fundo
+          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
+          backgroundImage: "url(" + paper.src + ")",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backdropFilter: "blur(10px)",
+         }}
       >
         <motion.h2
           initial={{ opacity: 0, y: 10 }}
