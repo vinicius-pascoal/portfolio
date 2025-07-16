@@ -12,26 +12,27 @@ import paper from "../images/cartographer.png";
 export default function Home() {
   return (
     <Background>
-      <header className=" text-white mx-auto text-center w-fit flex align-center items-center py-1 px-6
-      fixed top-0 right-0 z-20 rounded-lg shadow-lg h-fit" 
-      style={{ 
-          //use o mooning como imagem de fundo
+      <header
+        className=" text-white mx-auto text-center w-fit flex align-center items-center py-0 px-4
+      fixed top-1 right-1 z-20 rounded-lg shadow-lg h-fit"
+        style={{
           boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
           backgroundImage: "url(" + paper.src + ")",
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backdropFilter: "blur(10px)",
-         }}>
+        }}
+      >
         <div className="mr-4">
-        <h1 className="text-2xl font-bold">Vinicius Pascoal</h1>
-        <p className="text-gray-300">Full Stack Developer</p>
+          <h1 className="text-2xl font-bold">Vinicius Pascoal</h1>
+          <p className="text-gray-300">Full Stack Developer</p>
         </div>
         <Image
           src={personalImage}
           alt="Vinicius Pascoal"
-          width={100}
-          height={100}
+          width={50}
+          height={50}
           className="rounded-full mx-auto my-4 border-2 border-gray-300 shadow-lg "
         />
       </header>
@@ -42,15 +43,51 @@ export default function Home() {
       <div className=" bg-gray-900">
         <h2 className="text-3xl text-white text-center pt-3">Projetos :</h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-0 p-6">
-          <Item nome="Cestas E Afetos" descricao="Site de venda de cestas" url="https://github.com/vinicius-pascoal/cestas-E-afetos" />
-          <Item nome="Crossword" descricao="Site de palavra cruzada" url="https://github.com/vinicius-pascoal/palavra-cruzada"/>
-          <Item nome="Lista De Tarefas" descricao="Projeto de lista de tarefas" url="https://github.com/vinicius-pascoal/Todo-List"/>
-          <Item nome="Cardapio Digital" descricao="Label de cardapio digital" url="https://github.com/vinicius-pascoal/cardapio-digital"/>
-          <Item nome="Forca" descricao="Projeto de jogo da forca" url="https://github.com/vinicius-pascoal/forca"/>
-          <Item nome="tiradentes-banking" descricao="Desafio da materia de residencia" url="https://github.com/vinicius-pascoal/tiradentes-banking"/>
-          <Item nome="API de cursos" descricao="API para uma plataforma de cursos" url="https://github.com/vinicius-pascoal/squad_17_api_project"/>
-          <Item nome="API de lanchonete" descricao="API para uma lanchonete" url="https://github.com/vinicius-pascoal/project-raio"/>
-          <Item nome="CRUD" descricao="Um CRUD simples" url="https://github.com/vinicius-pascoal/projeto-crud"/>
+          <Item
+            nome="Cestas E Afetos"
+            descricao="Site de venda de cestas"
+            url="https://github.com/vinicius-pascoal/cestas-E-afetos"
+          />
+          <Item
+            nome="Crossword"
+            descricao="Site de palavra cruzada"
+            url="https://github.com/vinicius-pascoal/palavra-cruzada"
+          />
+          <Item
+            nome="Lista De Tarefas"
+            descricao="Projeto de lista de tarefas"
+            url="https://github.com/vinicius-pascoal/Todo-List"
+          />
+          <Item
+            nome="Cardapio Digital"
+            descricao="Label de cardapio digital"
+            url="https://github.com/vinicius-pascoal/cardapio-digital"
+          />
+          <Item
+            nome="Forca"
+            descricao="Projeto de jogo da forca"
+            url="https://github.com/vinicius-pascoal/forca"
+          />
+          <Item
+            nome="tiradentes-banking"
+            descricao="Desafio da materia de residencia"
+            url="https://github.com/vinicius-pascoal/tiradentes-banking"
+          />
+          <Item
+            nome="API de cursos"
+            descricao="API para uma plataforma de cursos"
+            url="https://github.com/vinicius-pascoal/squad_17_api_project"
+          />
+          <Item
+            nome="API de lanchonete"
+            descricao="API para uma lanchonete"
+            url="https://github.com/vinicius-pascoal/project-raio"
+          />
+          <Item
+            nome="CRUD"
+            descricao="Um CRUD simples"
+            url="https://github.com/vinicius-pascoal/projeto-crud"
+          />
         </div>
       </div>
       <Contato />

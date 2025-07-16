@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 import crossword from "../images/projetos/crossword.png";
 import cestasAfetos from "../images/projetos/cestasAfetos2.png";
@@ -89,7 +89,6 @@ export default function Carousel() {
         transition={{ duration: 0.6, ease: "easeOut" }}
         className="relative z-10 flex-1 p-5 max-w-2xl flex flex-col justify-center my-auto text-white h-fit rounded-lg mr-0 md:mx-6"
         style={{ 
-          //use o mooning como imagem de fundo
           boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
           backgroundImage: "url(" + paper.src + ")",
           backgroundSize: "cover",
@@ -146,7 +145,7 @@ export default function Carousel() {
       </aside>
 
       {/* Navegação inferior */}
-      <nav className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-5 z-20">
+      <nav className=" md:hidden absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-5 z-20">
         <button
           onClick={prevSlide}
           aria-label="Previous Slide"
