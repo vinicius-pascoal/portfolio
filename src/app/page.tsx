@@ -1,6 +1,9 @@
 "use client";
 
 import React, { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import personalImage from "../images/perfil.jpg";
+import paper from "../images/cartographer.png";
 import ParticlesBackground from "@/components/ParticlesBackground";
 
 /**
@@ -41,7 +44,30 @@ export default function Page() {
     <main className="relative">
       {/* Background de partículas */}
       <ParticlesBackground mode={mode} opacity={0.9} />
-
+      <header
+        className=" text-white mx-auto text-center w-fit flex align-center items-center py-0 px-4
+      fixed top-1 right-1 z-20 rounded-lg shadow-lg h-fit"
+        style={{
+          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
+          backgroundImage: "url(" + paper.src + ")",
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+          backdropFilter: "blur(10px)",
+        }}
+      >
+        <div className="mr-4">
+          <h1 className="text-2xl font-bold">Vinicius Pascoal</h1>
+          <p className="text-gray-300">Full Stack Developer</p>
+        </div>
+        <Image
+          src={personalImage}
+          alt="Vinicius Pascoal"
+          width={50}
+          height={50}
+          className="rounded-full mx-auto my-4 border-2 border-gray-300 shadow-lg "
+        />
+      </header>
       {/* Container com snap */}
       <div
         ref={containerRef}
