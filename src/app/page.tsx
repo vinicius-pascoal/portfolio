@@ -5,15 +5,13 @@ import Image from "next/image";
 import personalImage from "../images/perfil.jpg";
 import paper from "../images/cartographer.png";
 import ParticlesBackground from "@/components/ParticlesBackground";
+import ThreeDCarousel from "@/components/ThreeDCarousel";
+import ProjectsCarouselSection from "@/app/sections/ProjectsCarouselSection";
 
-/**
- * Página com 4 seções em scroll-snap.
- * Cada seção ativa um “modo” do background:
- * 0: galáxia | 1: ondas | 2: ondas laterais | 3: bolha central
- */
 export default function Page() {
   const [mode, setMode] = useState<0 | 1 | 2 | 3>(0);
   const containerRef = useRef<HTMLDivElement | null>(null);
+
 
   useEffect(() => {
     const sections = Array.from(
@@ -74,22 +72,7 @@ export default function Page() {
         className="relative h-screen w-screen overflow-y-scroll snap-y snap-mandatory"
       >
         {/* Seção 1 - Galáxia */}
-        <section
-          data-section
-          data-index={0}
-          className="snap-start h-screen w-full grid place-items-center bg-transparent"
-        >
-          <div className="text-center px-6">
-            <p className="text-sm uppercase tracking-[0.3em] text-slate-300/80">Padrão 1</p>
-            <h1 className="mt-2 text-5xl md:text-6xl font-bold text-white drop-shadow">
-              Galáxia
-            </h1>
-            <p className="mt-4 max-w-xl mx-auto text-slate-300/90">
-              Partículas em espiral com leve rotação, em braços de galáxia.
-              Role para ver a transição suave.
-            </p>
-          </div>
-        </section>
+        <ProjectsCarouselSection />
 
         {/* Seção 2 - Ondas */}
         <section
