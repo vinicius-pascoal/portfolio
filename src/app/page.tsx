@@ -8,6 +8,7 @@ import ParticlesBackground from "@/components/ParticlesBackground";
 import ProjectsCarouselSection from "@/app/sections/ProjectsCarouselSection";
 import AboutSection from "@/app/sections/AboutSection";
 import SkillsSection from "@/app/sections/SkillsSection";
+import ContactSection from "@/app/sections/ContactSection";
 
 export default function Page() {
   const [mode, setMode] = useState<0 | 1 | 2 | 3>(0);
@@ -88,21 +89,7 @@ export default function Page() {
         <SkillsSection />
 
         {/* Seção 4 - Bolha central */}
-        <section
-          data-section
-          data-index={3}
-          className="snap-start h-screen w-full grid place-items-center bg-transparent"
-        >
-          <div className="text-center px-6">
-            <p className="text-sm uppercase tracking-[0.3em] text-slate-300/80">Padrão 4</p>
-            <h2 className="mt-2 text-5xl md:text-6xl font-bold text-white drop-shadow">
-              Bolha Central
-            </h2>
-            <p className="mt-4 max-w-xl mx-auto text-slate-300/90">
-              Aglomeração “respirando” no centro, com anéis concêntricos.
-            </p>
-          </div>
-        </section>
+        <ContactSection />
       </div>
 
       {/* UI de dica de navegação (opcional) */}
