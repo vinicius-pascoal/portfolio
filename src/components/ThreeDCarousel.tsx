@@ -183,7 +183,7 @@ export default function ThreeDCarousel({
                 >
                   <div
                     ref={i === 0 ? firstCardRef : undefined}
-                    className={`group rounded-2xl bg-white/90 shadow-xl ring-1 ring-black/5 backdrop-blur dark:bg-slate-900/80 dark:ring-white/5 overflow-hidden ${cardClassName}`}
+                    className={`group rounded-2xl ring-1 ring-white/10 text-slate-200 bg-slate-900/70 shadow-xl ring-1 ring-black/5 backdrop-blur dark:bg-slate-900/80  overflow-hidden ${cardClassName}`}
                     style={{
                       transformStyle: "preserve-3d",
                       transform: `translateZ(${zLift}px) scale(${scale})`,
@@ -207,13 +207,13 @@ export default function ThreeDCarousel({
 
                     <div className="flex h-3/5 flex-col justify-start p-3">
                       {item.title && (
-                        <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100 line-clamp-1">
+                        <h3 className="text-base font-semibold text-slate-200 dark:text-slate-100 line-clamp-1">
                           {item.title}
                         </h3>
                       )}
                       {item.content && (
                         <div
-                          className="prose prose-xs mt-1 max-w-none text-slate-600 dark:text-slate-300 line-clamp-3 group-hover:line-clamp-none transition-all duration-200"
+                          className="prose prose-xs mt-1 max-w-none text-slate-400 dark:text-slate-300 line-clamp-3 group-hover:line-clamp-none transition-all duration-200"
                           title={typeof item.content === "string" ? item.content : undefined}
                         >
                           {item.content}

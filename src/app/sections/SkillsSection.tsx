@@ -83,8 +83,8 @@ export default function SkillsSection() {
           <div className="md:justify-self-end w-full md:w-[44rem]">
             <div
               className="relative mx-auto w-full max-w-xl md:max-w-2xl
-                         rounded-2xl bg-white/90 shadow-xl ring-1 ring-slate-900/10
-                         dark:bg-slate-900/60 dark:ring-white/5 overflow-hidden
+                         rounded-2xl bg-slate-900/70 shadow-xl ring-1 ring-white/10 ring-1 ring-white/10
+                           overflow-hidden
                          max-h-[76dvh] md:max-h-[72vh]"
             >
               <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-sky-400/10 via-transparent to-indigo-500/10" />
@@ -93,7 +93,7 @@ export default function SkillsSection() {
                               max-h-[calc(76dvh-2rem)] md:max-h-[calc(72vh-2rem)]">
                 {grouped.map(({ group, items }) => (
                   <div key={group} className="space-y-3">
-                    <h3 className="text-sm font-semibold tracking-wide text-slate-700 dark:text-slate-200/90">
+                    <h3 className="text-sm font-semibold tracking-wide text-slate-200 text-slate-200/90">
                       {group}
                     </h3>
 
@@ -103,9 +103,8 @@ export default function SkillsSection() {
                         return (
                           <li key={skill.key}>
                             <div
-                              className="group flex items-center gap-2 rounded-xl border border-white/10
-                                         bg-white/70 px-3 py-2 text-sm text-slate-800 shadow-sm
-                                         dark:bg-white/5 dark:text-slate-200 dark:border-white/10
+                              className="group flex items-center gap-2 rounded-xl border border-white/10 bg-slate-900/60 px-3 py-2 text-sm text-slate-200 shadow-sm
+                                         dark:bg-slate-900/40 dark:text-slate-200 border-white/10
                                          hover:shadow-md transition-all"
                               title={skill.label}
                             >

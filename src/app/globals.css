@@ -1,10 +1,10 @@
-/* src/app/globals.css */
 @import "tailwindcss";
 
 :root {
   --background: #0a0a0a;
   --foreground: #ededed;
 }
+
 
 @theme inline {
   --color-background: var(--background);
@@ -13,11 +13,6 @@
   --font-mono: var(--font-geist-mono);
 }
 
-/* opcionalmente garantir layout full-height */
-html,
-body {
-  min-height: 100%;
-}
 
 body {
   background: var(--background);

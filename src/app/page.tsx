@@ -45,7 +45,7 @@ export default function Page() {
       {/* Background de partículas */}
       <ParticlesBackground mode={mode} opacity={0.9} />
       <header
-        className="fixed top-1 right-1 z-20 mx-auto w-fit h-fit text-white rounded-2xl shadow-xl ring-1 ring-slate-900/10 dark:ring-white/5 overflow-hidden"
+        className="fixed top-1 right-1 z-20 mx-auto w-fit h-fit text-white rounded-2xl shadow-xl ring-1 ring-white/10  overflow-hidden"
         style={{
           boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
           backgroundImage: `url(${paper.src})`,
@@ -61,7 +61,7 @@ export default function Page() {
         <div className="relative z-10 flex items-center gap-4 px-4 py-2">
           <div className="text-right">
             <h1 className="text-2xl font-bold">Vinicius Pascoal</h1>
-            <p className="text-gray-300">Full Stack Developer</p>
+            <p className="text-slate-300">Full Stack Developer</p>
           </div>
 
           <Image
@@ -69,7 +69,7 @@ export default function Page() {
             alt="Vinicius Pascoal"
             width={50}
             height={50}
-            className="rounded-full mx-auto my-4 border-2 border-gray-300 shadow-lg"
+            className="rounded-full mx-auto my-4 border-2 border-white/20 shadow-lg"
           />
         </div>
       </header>

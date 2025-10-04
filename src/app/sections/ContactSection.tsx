@@ -79,8 +79,8 @@ export default function ContactSection() {
           <div className="w-full md:w-[44rem] justify-self-center">
             <div
               className="relative mx-auto w-full max-w-xl md:max-w-2xl
-                         rounded-2xl bg-white/90 shadow-xl ring-1 ring-slate-900/10
-                         dark:bg-slate-900/60 dark:ring-white/5 overflow-hidden
+                         rounded-2xl bg-slate-900/70 shadow-xl ring-1 ring-white/10 ring-1 ring-white/10
+                           overflow-hidden
                          max-h-[70dvh] md:max-h-[68vh]"
             >
               {/* overlay gradiente igual aos cards */}
@@ -91,7 +91,7 @@ export default function ContactSection() {
                               max-h-[calc(70dvh-2rem)] md:max-h-[calc(68vh-2rem)]">
                 {/* Contatos diretos */}
                 <div className="space-y-3">
-                  <h3 className="text-sm font-semibold tracking-wide text-slate-700 dark:text-slate-200/90">
+                  <h3 className="text-sm font-semibold tracking-wide text-slate-200 text-slate-200/90">
                     Contato direto
                   </h3>
                   <ul className="space-y-2">
@@ -99,8 +99,8 @@ export default function ContactSection() {
                       <li key={key}>
                         <div
                           className="flex items-center justify-between gap-3 rounded-xl border border-white/10
-                                     bg-white/70 px-3 py-2 text-sm text-slate-800 shadow-sm
-                                     dark:bg-white/5 dark:text-slate-200 dark:border-white/10"
+                                     bg-slate-900/60 px-3 py-2 text-sm text-slate-200 shadow-sm
+                                     dark:bg-slate-900/40 dark:text-slate-200 border-white/10"
                         >
                           <div className="flex items-center gap-3 min-w-0">
                             <Icon className="h-4 w-4 opacity-80 shrink-0" aria-hidden="true" />
@@ -116,7 +116,7 @@ export default function ContactSection() {
                                 href={href}
                                 target={href.startsWith("http") ? "_blank" : undefined}
                                 rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                                className="rounded-lg border border-white/10 bg-white/20 px-2 py-1 text-xs hover:bg-white/30"
+                                className="rounded-lg border border-white/10 bg-slate-800/50 px-2 py-1 text-xs hover:bg-slate-900/30"
                                 aria-label={`Abrir ${label}`}
                                 title={`Abrir ${label}`}
                               >
@@ -125,7 +125,7 @@ export default function ContactSection() {
                             )}
                             <button
                               onClick={() => copy(value, key)}
-                              className="inline-flex items-center gap-1 rounded-lg border border-white/10 bg-white/20 px-2 py-1 text-xs hover:bg-white/30"
+                              className="inline-flex items-center gap-1 rounded-lg border border-white/10 bg-slate-800/50 px-2 py-1 text-xs hover:bg-slate-900/30"
                               aria-label={`Copiar ${label}`}
                               title={`Copiar ${label}`}
                             >
@@ -148,7 +148,7 @@ export default function ContactSection() {
 
                 {/* Redes sociais */}
                 <div className="space-y-3">
-                  <h3 className="text-sm font-semibold tracking-wide text-slate-700 dark:text-slate-200/90">
+                  <h3 className="text-sm font-semibold tracking-wide text-slate-200 text-slate-200/90">
                     Redes sociais
                   </h3>
                   <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 justify-items-center">
@@ -159,8 +159,8 @@ export default function ContactSection() {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="group flex items-center justify-center gap-2 rounded-xl border border-white/10
-                                     bg-white/70 px-3 py-2 text-sm text-slate-800 shadow-sm
-                                     dark:bg-white/5 dark:text-slate-200 dark:border-white/10
+                                     bg-slate-900/60 px-3 py-2 text-sm text-slate-200 shadow-sm
+                                     dark:bg-slate-900/40 dark:text-slate-200 border-white/10
                                      hover:shadow-md transition-all"
                           title={label}
                           aria-label={label}
