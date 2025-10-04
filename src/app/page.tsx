@@ -7,6 +7,7 @@ import paper from "../images/cartographer.png";
 import ParticlesBackground from "@/components/ParticlesBackground";
 import ProjectsCarouselSection from "@/app/sections/ProjectsCarouselSection";
 import AboutSection from "@/app/sections/AboutSection";
+import SkillsSection from "@/app/sections/SkillsSection";
 
 export default function Page() {
   const [mode, setMode] = useState<0 | 1 | 2 | 3>(0);
@@ -43,29 +44,35 @@ export default function Page() {
       {/* Background de partículas */}
       <ParticlesBackground mode={mode} opacity={0.9} />
       <header
-        className=" text-white mx-auto text-center w-fit flex align-center items-center py-0 px-4
-      fixed top-1 right-1 z-20 rounded-lg shadow-lg h-fit"
+        className="fixed top-1 right-1 z-20 mx-auto w-fit h-fit text-white rounded-2xl shadow-xl ring-1 ring-slate-900/10 dark:ring-white/5 overflow-hidden"
         style={{
           boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
-          backgroundImage: "url(" + paper.src + ")",
+          backgroundImage: `url(${paper.src})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
           backgroundRepeat: "no-repeat",
           backdropFilter: "blur(10px)",
         }}
       >
-        <div className="mr-4">
-          <h1 className="text-2xl font-bold">Vinicius Pascoal</h1>
-          <p className="text-gray-300">Full Stack Developer</p>
+        {/* overlay de gradiente igual aos cards */}
+        <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-sky-400/10 via-transparent to-indigo-500/10" />
+
+        <div className="relative z-10 flex items-center gap-4 px-4 py-2">
+          <div className="text-right">
+            <h1 className="text-2xl font-bold">Vinicius Pascoal</h1>
+            <p className="text-gray-300">Full Stack Developer</p>
+          </div>
+
+          <Image
+            src={personalImage}
+            alt="Vinicius Pascoal"
+            width={50}
+            height={50}
+            className="rounded-full mx-auto my-4 border-2 border-gray-300 shadow-lg"
+          />
         </div>
-        <Image
-          src={personalImage}
-          alt="Vinicius Pascoal"
-          width={50}
-          height={50}
-          className="rounded-full mx-auto my-4 border-2 border-gray-300 shadow-lg "
-        />
       </header>
+
       {/* Container com snap */}
       <div
         ref={containerRef}
@@ -78,22 +85,7 @@ export default function Page() {
         < AboutSection />
 
         {/* Seção 3 - Ondas das laterais */}
-        <section
-          data-section
-          data-index={2}
-          className="snap-start h-screen w-full grid place-items-center bg-transparent"
-        >
-          <div className="text-center px-6">
-            <p className="text-sm uppercase tracking-[0.3em] text-slate-300/80">Padrão 3</p>
-            <h2 className="mt-2 text-5xl md:text-6xl font-bold text-white drop-shadow">
-              Ondas das Laterais
-            </h2>
-            <p className="mt-4 max-w-xl mx-auto text-slate-300/90">
-              Fluxos senoidais entrando pela esquerda e direita,
-              “derivando” até o centro.
-            </p>
-          </div>
-        </section>
+        <SkillsSection />
 
         {/* Seção 4 - Bolha central */}
         <section
