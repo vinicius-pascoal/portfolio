@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useEffect, useMemo, useRef, useState } from "react";
+import paper from "@/app/images/cartographer.png";
 
 export type CarouselItem = {
   id: string | number;
@@ -41,6 +42,13 @@ export default function ThreeDCarousel({
   const [offset, setOffset] = useState(0);
   const playing = useRef(true);
   const hovering = useRef(false);
+  const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const scheduleResume = (ms = 1600) => {
+    if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    resumeTimer.current = setTimeout(() => {
+      if (!hovering.current) playing.current = true;
+    }, ms);
+  };
   const raf = useRef<number | null>(null);
   const last = useRef<number | null>(null);
 
@@ -96,6 +104,7 @@ export default function ThreeDCarousel({
   };
   const onPointerUp: React.PointerEventHandler<HTMLDivElement> = () => {
     drag.current.on = false;
+    scheduleResume(1400);
   };
   const onWheel: React.WheelEventHandler<HTMLDivElement> = (e) => {
     const s = e.deltaY !== 0 ? e.deltaY : -e.deltaX;
@@ -128,7 +137,7 @@ export default function ThreeDCarousel({
     <div
       className={`relative w-full ${className ?? ""}`}
       onMouseEnter={() => (hovering.current = true)}
-      onMouseLeave={() => (hovering.current = false)}
+      onMouseLeave={() => { hovering.current = false; scheduleResume(600); }}
     >
       <div
         className="relative mx-auto grid h-[30rem] w-full place-items-center isolate"

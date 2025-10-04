@@ -2,6 +2,7 @@
 "use client";
 
 import React, { useState } from "react";
+import paper from "@/app/images/cartographer.png";
 import {
   Mail, Phone, MapPin, MessageCircle,
   Github, Linkedin, Instagram, Twitter, Globe,

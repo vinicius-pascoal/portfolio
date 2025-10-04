@@ -1,5 +1,6 @@
 // src/app/sections/AboutSection.tsx
 import Image from "next/image";
+import paper from "@/app/images/cartographer.png";
 import personalImage from "@/images/perfil.jpg";
 
 export default function AboutSection() {

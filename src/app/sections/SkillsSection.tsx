@@ -3,6 +3,7 @@
 
 import { Code2, Server, Database, Boxes, Layers, Rocket, Send } from "lucide-react";
 import React from "react";
+import paper from "@/app/images/cartographer.png";
 
 type Group = "Linguagens" | "Frameworks & Libs" | "Back-end & DB" | "Ferramentas";
 
