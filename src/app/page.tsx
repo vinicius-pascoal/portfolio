@@ -5,8 +5,8 @@ import Image from "next/image";
 import personalImage from "../images/perfil.jpg";
 import paper from "../images/cartographer.png";
 import ParticlesBackground from "@/components/ParticlesBackground";
-import ThreeDCarousel from "@/components/ThreeDCarousel";
 import ProjectsCarouselSection from "@/app/sections/ProjectsCarouselSection";
+import AboutSection from "@/app/sections/AboutSection";
 
 export default function Page() {
   const [mode, setMode] = useState<0 | 1 | 2 | 3>(0);
@@ -75,19 +75,7 @@ export default function Page() {
         <ProjectsCarouselSection />
 
         {/* Seção 2 - Ondas */}
-        <section
-          data-section
-          data-index={1}
-          className="snap-start h-screen w-full grid place-items-center bg-transparent"
-        >
-          <div className="text-center px-6">
-            <p className="text-sm uppercase tracking-[0.3em] text-slate-300/80">Padrão 2</p>
-            <h2 className="mt-2 text-5xl md:text-6xl font-bold text-white drop-shadow">Ondas</h2>
-            <p className="mt-4 max-w-xl mx-auto text-slate-300/90">
-              Faixas senoidais horizontais, com movimento contínuo.
-            </p>
-          </div>
-        </section>
+        < AboutSection />
 
         {/* Seção 3 - Ondas das laterais */}
         <section
