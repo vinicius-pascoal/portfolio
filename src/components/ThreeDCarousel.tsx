@@ -7,49 +7,61 @@ export type CarouselItem = {
   title?: string;
   subtitle?: string;
   imageUrl?: string;
-  content?: React.ReactNode;
+  content?: React.ReactNode; // descrição do projeto (string/JSX)
 };
 
 type Props = {
   items: CarouselItem[];
   className?: string;
-  /** Distância do anel à câmera (px). Menor = cartas mais próximas visualmente. */
-  radius?: number;
-  /** Pequena inclinação do anel para evidenciar a profundidade. */
   tiltDeg?: number;
-  /** Duração base de uma volta (ms). Quanto maior, mais devagar. */
   durationMs?: number;
-  /** Duração quando hover (ms). */
   hoverDurationMs?: number;
-  /** Tamanho dos cards via Tailwind (ex.: "w-48 h-64"). */
   cardClassName?: string;
-  /** Remove destaque do card da frente (scale/brightness/lift). */
   highlight?: boolean;
+  gapPx?: number;
+  onFrontChange?: (index: number) => void;
 };
 
-const DEFAULT_CARD_TW = "w-64 h-80";
+const DEFAULT_CARD_TW = "w-40 h-56";
 
 export default function ThreeDCarousel({
   items,
   className,
-  radius = 600,
-  tiltDeg = 10,
-  durationMs = 16000,
-  hoverDurationMs = 6000,
+  tiltDeg = 8,
+  durationMs = 32000,
+  hoverDurationMs = 14000,
   cardClassName = DEFAULT_CARD_TW,
-  highlight = true,
+  highlight = false,
+  gapPx = 5,
+  onFrontChange,
 }: Props) {
   const N = Math.max(1, items.length);
   const step = 360 / N;
 
-  // rotação global do anel (em graus)
   const [offset, setOffset] = useState(0);
   const playing = useRef(true);
   const hovering = useRef(false);
   const raf = useRef<number | null>(null);
   const last = useRef<number | null>(null);
 
-  // autoplay estilo @keyframes (uma volta completa)
+  const firstCardRef = useRef<HTMLDivElement | null>(null);
+  const [cardWidth, setCardWidth] = useState<number | null>(null);
+
+  useEffect(() => {
+    const el = firstCardRef.current;
+    if (!el) return;
+    const measure = () => setCardWidth(el.getBoundingClientRect().width);
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  const dynamicRadius = useMemo(() => {
+    if (!cardWidth) return 500;
+    return (N * (cardWidth + gapPx)) / (2 * Math.PI);
+  }, [N, cardWidth, gapPx]);
+
   useEffect(() => {
     const loop = (t: number) => {
       if (last.current == null) last.current = t;
@@ -70,7 +82,6 @@ export default function ThreeDCarousel({
     };
   }, [N, durationMs, hoverDurationMs]);
 
-  // Drag / Wheel / Teclado (permanece — só removemos UI de controle)
   const drag = useRef({ on: false, x: 0 });
   const onPointerDown: React.PointerEventHandler<HTMLDivElement> = (e) => {
     (e.currentTarget as HTMLElement).setPointerCapture?.(e.pointerId);
@@ -81,7 +92,7 @@ export default function ThreeDCarousel({
     if (!drag.current.on) return;
     const dx = e.clientX - drag.current.x;
     drag.current.x = e.clientX;
-    setOffset((d) => d + dx * 0.35); // px -> graus
+    setOffset((d) => d + dx * 0.35);
   };
   const onPointerUp: React.PointerEventHandler<HTMLDivElement> = () => {
     drag.current.on = false;
@@ -93,24 +104,25 @@ export default function ThreeDCarousel({
   };
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "ArrowRight") {
-        setOffset((d) => d - step);
-        playing.current = false;
-      }
-      if (e.key === "ArrowLeft") {
-        setOffset((d) => d + step);
-        playing.current = false;
-      }
+      if (e.key === "ArrowRight") { setOffset((d) => d - step); playing.current = false; }
+      if (e.key === "ArrowLeft") { setOffset((d) => d + step); playing.current = false; }
     };
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
   }, [step]);
 
-  // índice aproximado do card "da frente" (pode ser útil a quem use fora)
   const front = useMemo(() => {
-    const norm = ((-offset % 360) + 360) % 360; // 0° = frente
+    const norm = ((-offset % 360) + 360) % 360;
     return Math.round(norm / step) % N;
   }, [offset, step, N]);
+
+  const lastFrontRef = useRef<number>(-1);
+  useEffect(() => {
+    if (front !== lastFrontRef.current) {
+      lastFrontRef.current = front;
+      onFrontChange?.(front);
+    }
+  }, [front, onFrontChange]);
 
   return (
     <div
@@ -118,7 +130,6 @@ export default function ThreeDCarousel({
       onMouseEnter={() => (hovering.current = true)}
       onMouseLeave={() => (hovering.current = false)}
     >
-      {/* Isolador + Stage com perspectiva real */}
       <div
         className="relative mx-auto grid h-[30rem] w-full place-items-center isolate"
         onPointerDown={onPointerDown}
@@ -130,14 +141,13 @@ export default function ThreeDCarousel({
         aria-roledescription="Carrossel 3D"
       >
         <div
-          className="relative h-full w-full max-w-6xl"
+          className="relative h-full w-full"
           style={{
             perspective: "1000px",
             perspectiveOrigin: "50% 40%",
             transformStyle: "preserve-3d",
           }}
         >
-          {/* Anel 3D */}
           <div
             className="absolute inset-0"
             style={{
@@ -149,11 +159,8 @@ export default function ThreeDCarousel({
             {items.map((item, i) => {
               const ang = i * step;
               const isFront = i === front;
-
-              // Destaque opcional
               const zLift = highlight && isFront ? 36 : 0;
-              const scale = highlight ? (isFront ? 1.08 : 1) : 1;
-              const brightness = highlight ? (isFront ? 1 : 1) : 1;
+              const scale = highlight ? (isFront ? 1.06 : 1) : 1;
 
               return (
                 <figure
@@ -161,16 +168,16 @@ export default function ThreeDCarousel({
                   className="absolute left-1/2 top-1/2"
                   style={{
                     transformStyle: "preserve-3d",
-                    transform: `translate(-50%,-50%) rotateY(${ang}deg) translateZ(${radius}px)`,
+                    transform: `translate(-50%,-50%) rotateY(${ang}deg) translateZ(${dynamicRadius}px)`,
                     willChange: "transform",
                   }}
                 >
                   <div
-                    className={`rounded-2xl bg-white/90 shadow-xl ring-1 ring-black/5 backdrop-blur dark:bg-slate-900/80 dark:ring-white/5 overflow-hidden ${cardClassName}`}
+                    ref={i === 0 ? firstCardRef : undefined}
+                    className={`group rounded-2xl bg-white/90 shadow-xl ring-1 ring-black/5 backdrop-blur dark:bg-slate-900/80 dark:ring-white/5 overflow-hidden ${cardClassName}`}
                     style={{
                       transformStyle: "preserve-3d",
                       transform: `translateZ(${zLift}px) scale(${scale})`,
-                      filter: `brightness(${brightness})`,
                       backfaceVisibility: "hidden",
                       willChange: "transform, filter",
                     }}
@@ -189,25 +196,20 @@ export default function ThreeDCarousel({
                       <div className="h-2/5 w-full bg-gradient-to-br from-sky-400/40 to-indigo-500/40" />
                     )}
 
-                    <div className="flex h-3/5 flex-col justify-between p-4">
-                      <div>
-                        {item.subtitle && (
-                          <p className="text-xs uppercase tracking-wide text-slate-500 dark:text-slate-400">
-                            {item.subtitle}
-                          </p>
-                        )}
-                        {item.title && (
-                          <h3 className="mt-1 text-lg font-semibold text-slate-900 dark:text-slate-100">
-                            {item.title}
-                          </h3>
-                        )}
-                        {item.content && (
-                          <div className="prose prose-sm mt-2 line-clamp-4 max-w-none dark:prose-invert">
-                            {item.content}
-                          </div>
-                        )}
-                      </div>
-                      {/* removido: botões/controles dentro do card */}
+                    <div className="flex h-3/5 flex-col justify-start p-3">
+                      {item.title && (
+                        <h3 className="text-base font-semibold text-slate-900 dark:text-slate-100 line-clamp-1">
+                          {item.title}
+                        </h3>
+                      )}
+                      {item.content && (
+                        <div
+                          className="prose prose-xs mt-1 max-w-none text-slate-600 dark:text-slate-300 line-clamp-3 group-hover:line-clamp-none transition-all duration-200"
+                          title={typeof item.content === "string" ? item.content : undefined}
+                        >
+                          {item.content}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </figure>
@@ -215,12 +217,10 @@ export default function ThreeDCarousel({
             })}
           </div>
 
-          {/* sombra no “chão” */}
           <div className="pointer-events-none absolute inset-x-0 bottom-8 mx-auto h-16 w-2/3 rounded-[100%] bg-black/10 blur-2xl" />
         </div>
       </div>
 
-      {/* removido: paginação (bolinhas) e controles superiores */}
       <span className="sr-only" role="status" aria-live="polite">
         Slide {front + 1} de {N}
       </span>
