@@ -75,7 +75,7 @@ export default function AboutSection() {
                   Vinicius Pascoal
                 </h3>
                 <p className="mt-1 text-sm text-slate-300/90">
-                  Desenvolvedor Front-end / Full-stack
+                  Desenvolvedor Full-stack
                 </p>
               </div>
 
