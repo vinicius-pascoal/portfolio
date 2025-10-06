@@ -22,7 +22,6 @@ export default function Page() {
 
     const io = new IntersectionObserver(
       (entries) => {
-        // pega a seção mais visível
         const visible = entries
           .filter((e) => e.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
@@ -42,7 +41,6 @@ export default function Page() {
 
   return (
     <main className="relative">
-      {/* Background de partículas */}
       <ParticlesBackground mode={mode} opacity={0.9} />
       <header
         className="fixed top-1 right-1 z-20 mx-auto w-fit h-fit text-white rounded-2xl shadow-xl ring-1 ring-white/10  overflow-hidden"
@@ -55,7 +53,6 @@ export default function Page() {
           backdropFilter: "blur(10px)",
         }}
       >
-        {/* overlay de gradiente igual aos cards */}
         <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-sky-400/10 via-transparent to-indigo-500/10" />
 
         <div className="relative z-10 flex items-center gap-4 px-4 py-2">
@@ -92,7 +89,6 @@ export default function Page() {
         <ContactSection />
       </div>
 
-      {/* UI de dica de navegação (opcional) */}
       <div className="pointer-events-none fixed bottom-6 left-1/2 -translate-x-1/2 text-slate-300/80 text-xs tracking-wide">
         role para navegar • seção {mode + 1}/4
       </div>
