@@ -43,7 +43,7 @@ export default function Page() {
     <main className="relative">
       <ParticlesBackground mode={mode} opacity={0.9} />
       <header
-        className="fixed top-1 right-1 z-20 mx-auto w-fit h-fit text-white rounded-2xl shadow-xl ring-1 ring-white/10  overflow-hidden"
+        className="fixed top-1 right-1 z-20 mx-auto w-fit h-fit text-white rounded-2xl shadow-xl ring-1 ring-white/10  overflow-hidden hidden sm:block"
         style={{
           boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
           backgroundImage: `url(${paper.src})`,
