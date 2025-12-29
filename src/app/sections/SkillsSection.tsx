@@ -24,7 +24,6 @@ const SKILLS: Skill[] = [
   { key: "javascript", label: "JavaScript", group: "Linguagens", icon: Code2 },
   { key: "html", label: "HTML5", group: "Linguagens", icon: Code2 },
   { key: "css", label: "CSS3", group: "Linguagens", icon: Code2 },
-  { key: "php", label: "PHP", group: "Linguagens", icon: Code2 },
   { key: "sql", label: "SQL", group: "Linguagens", icon: Code2 },
 
   // Frameworks & Libs

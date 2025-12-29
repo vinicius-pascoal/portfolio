@@ -58,7 +58,6 @@ export default function ContactSection() {
     >
       <div className="w-full max-w-7xl px-4 mx-auto">
         <div className="grid md:grid-cols-2 gap-8 gap-y-12 items-center justify-items-center">
-          {/* ESQUERDA — título + texto */}
           <motion.div
             className="relative z-10 text-center md:text-left max-w-xl"
             initial="hidden"
@@ -79,7 +78,6 @@ export default function ContactSection() {
             </p>
           </motion.div>
 
-          {/* DIREITA — cartão com contatos e redes */}
           <motion.div
             className="w-full md:w-[44rem] justify-self-center"
             initial="hidden"
@@ -98,8 +96,6 @@ export default function ContactSection() {
               }}
             >
               <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-sky-400/10 via-transparent to-indigo-500/10" />
-
-              {/* conteúdo scrollável */}
               <motion.div
                 className="p-5 md:p-6 space-y-6 overflow-y-auto overscroll-contain max-h-[calc(70dvh-2rem)] md:max-h-[calc(68vh-2rem)]"
                 variants={staggerParent(0.06)}
@@ -107,7 +103,6 @@ export default function ContactSection() {
                 whileInView="show"
                 viewport={{ once: true, amount: 0.2 }}
               >
-                {/* Contatos diretos */}
                 <div className="space-y-3">
                   <h3 className="text-sm font-semibold tracking-wide text-slate-200/90">
                     Contato direto
@@ -160,7 +155,6 @@ export default function ContactSection() {
                   </ul>
                 </div>
 
-                {/* Redes sociais */}
                 <div className="space-y-3">
                   <h3 className="text-sm font-semibold tracking-wide text-slate-200/90">
                     Redes sociais
@@ -184,8 +178,6 @@ export default function ContactSection() {
                   </ul>
                 </div>
               </motion.div>
-
-              {/* sombra/spot */}
               <div className="pointer-events-none absolute inset-x-0 -bottom-6 mx-auto h-16 w-2/3 rounded-[100%] bg-black/10 blur-2xl" />
             </div>
           </motion.div>
