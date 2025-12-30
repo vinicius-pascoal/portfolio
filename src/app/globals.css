@@ -19,3 +19,36 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+/* Scrollbar customizado para SkillsSection e outros usos */
+.custom-scrollbar::-webkit-scrollbar {
+  height: 8px;
+  background: transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #18181B 0%, #6366F1 100%);
+  border-radius: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: #E5E7EB;
+  border-radius: 8px;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(90deg, #E5E7EB 0%, #6366F1 100%);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-track {
+  background: #18181B;
+}
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: #6366F1 #E5E7EB;
+}
+
+.dark .custom-scrollbar {
+  scrollbar-color: #6366F1 #18181B;
+}

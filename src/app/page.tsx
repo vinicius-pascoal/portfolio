@@ -74,7 +74,7 @@ export default function Page() {
       {/* Container com snap */}
       <div
         ref={containerRef}
-        className="relative h-screen w-screen overflow-x-hidden overflow-y-scroll snap-y snap-mandatory"
+        className="relative h-screen w-screen overflow-x-hidden overflow-y-scroll snap-y snap-mandatory custom-scrollbar"
       >
         {/* Seção 1 - Galáxia */}
         <ProjectsCarouselSection />
