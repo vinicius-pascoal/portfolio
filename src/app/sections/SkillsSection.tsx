@@ -84,7 +84,7 @@ export default function SkillsSection() {
           <motion.div className="md:justify-self-end w-full md:w-[44rem]" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={scaleIn}>
             <div
               className="relative mx-auto w-full max-w-xl md:max-w-2xl
-                         rounded-2xl bg-slate-900/70 shadow-xl ring-1 ring-white/10 ring-1 ring-white/10
+                         rounded-2xl bg-slate-900/70 shadow-xl ring-1 ring-white/10
                            overflow-hidden
                          max-h-[76dvh] md:max-h-[72vh]"
               style={{
@@ -101,7 +101,7 @@ export default function SkillsSection() {
                               max-h-[calc(76dvh-2rem)] md:max-h-[calc(72vh-2rem)]" variants={staggerParent(0.05)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
                 {grouped.map(({ group, items }) => (
                   <div key={group} className="space-y-3">
-                    <h3 className="text-sm font-semibold tracking-wide text-slate-200 text-slate-200/90">
+                    <h3 className="text-sm font-semibold tracking-wide text-slate-200 ">
                       {group}
                     </h3>
 
@@ -111,7 +111,7 @@ export default function SkillsSection() {
                         return (
                           <motion.li key={skill.key} variants={itemPop}>
                             <div
-                              className="group flex items-center gap-2 rounded-xl border border-white/10 bg-slate-900/60 px-3 py-2 text-sm text-slate-200 shadow-sm
+                              className="group flex items-center gap-2 rounded-xl border bg-slate-900/60 px-3 py-2 text-sm text-slate-200 shadow-sm
                                          dark:bg-slate-900/40 dark:text-slate-200 border-white/10
                                          hover:shadow-md transition-all"
                               title={skill.label}
