@@ -89,7 +89,7 @@ export default function CoverflowCarousel({ items, className }: Props) {
                     <h3 className="text-center text-xl font-extrabold tracking-wide">
                       {item.title ?? ""}
                     </h3>
-                    <div className="mx-auto mt-2 h-0.5 w-24 rounded bg-amber-400" />
+                    <div className="mx-auto mt-2 h-0.5 w-24 rounded bg-cyan-700" />
                   </div>
 
                   <div />
