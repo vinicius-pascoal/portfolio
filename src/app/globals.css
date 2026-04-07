@@ -20,6 +20,12 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+html,
+body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
 /* Scrollbar customizado para SkillsSection e outros usos */
 .custom-scrollbar::-webkit-scrollbar {
   height: 8px;

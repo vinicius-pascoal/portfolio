@@ -83,7 +83,7 @@ export default function SkillsSection() {
           </motion.div>
 
           {/* DIREITA — cartão com grupos e chips (capado ao viewport + scroll interno) */}
-          <motion.div className="md:justify-self-end w-full md:w-[44rem]" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={scaleIn}>
+          <motion.div className="md:justify-self-end w-full md:max-w-2xl" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={scaleIn}>
             <div
               className={`relative mx-auto w-full max-w-xl md:max-w-2xl
                          rounded-2xl bg-slate-900/70 shadow-xl ring-1 ring-white/10
@@ -113,18 +113,18 @@ export default function SkillsSection() {
                       {group}
                     </h3>
 
-                    <ul className="grid grid-cols-1 min-[420px]:grid-cols-2 sm:grid-cols-3 gap-2">
+                    <ul className="grid grid-cols-2 sm:grid-cols-3 gap-2">
                       {items.map((skill) => {
                         const Icon = skill.icon ?? Code2;
                         return (
                           <motion.li key={skill.key} variants={itemPop}>
                             <div
-                              className="group flex items-center gap-2 rounded-xl border bg-slate-900/60 px-3 py-2 text-xs md:text-sm text-slate-200 shadow-sm
+                              className="group flex min-w-0 items-center gap-1.5 rounded-xl border bg-slate-900/60 px-2.5 py-2 text-[11px] leading-tight md:gap-2 md:px-3 md:text-sm text-slate-200 shadow-sm
                                          dark:bg-slate-900/40 dark:text-slate-200 border-white/10
                                          hover:shadow-md transition-all"
                               title={skill.label}
                             >
-                              <Icon className="h-4 w-4 opacity-80" aria-hidden="true" />
+                              <Icon className="h-3.5 w-3.5 shrink-0 opacity-80 md:h-4 md:w-4" aria-hidden="true" />
                               <span className="truncate">{skill.label}</span>
                             </div>
                           </motion.li>

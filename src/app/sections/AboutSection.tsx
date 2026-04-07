@@ -44,7 +44,7 @@ export default function AboutSection() {
 
           {/* DIREITA — cartão visual (estética da seção anterior) */}
           <motion.div
-            className="md:justify-self-end w-full md:w-[44rem]"
+            className="md:justify-self-end w-full md:max-w-2xl"
             initial="hidden"
             whileInView="show"
             viewport={{ once: true, amount: 0.3 }}

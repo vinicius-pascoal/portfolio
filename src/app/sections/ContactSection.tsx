@@ -78,7 +78,7 @@ export default function ContactSection() {
           </motion.div>
 
           <motion.div
-            className="w-full md:w-[44rem] justify-self-center"
+            className="w-full md:max-w-2xl justify-self-center"
             initial="hidden"
             animate="show"
             variants={scaleIn}

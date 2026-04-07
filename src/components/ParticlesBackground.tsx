@@ -183,7 +183,7 @@ export default function ParticlesBackground({
 
       // alvo origem e alvo destino (dinâmicos, dependem de t)
       const f = targetFor(p, i, fromMode, w, h, t);
-      const d = targetFor(p, i, toMode,   w, h, t);
+      const d = targetFor(p, i, toMode, w, h, t);
 
       // blend entre os dois alvos → alvo final desta frame
       const tx = lerp(f.x, d.x, blend);
@@ -195,7 +195,7 @@ export default function ParticlesBackground({
 
       const swirl = 0.25 * Math.sin(t * 0.8 + p.seed * 10 + i * 0.002);
       const swirlX = -swirl * (p.y - h / 2) * 0.0006;
-      const swirlY =  swirl * (p.x - w / 2) * 0.0006;
+      const swirlY = swirl * (p.x - w / 2) * 0.0006;
 
       p.vx = (p.vx + ax + swirlX) * 0.9;
       p.vy = (p.vy + ay + swirlY) * 0.9;
@@ -248,7 +248,7 @@ export default function ParticlesBackground({
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 -z-10 h-screen w-screen block"
+      className="fixed inset-0 -z-10 h-full w-full block"
       style={{ background: "transparent" }}
     />
   );
