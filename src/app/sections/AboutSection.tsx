@@ -11,7 +11,7 @@ export default function AboutSection() {
     <section
       data-section="true"
       data-index={1}
-      className="snap-start min-h-screen w-full flex justify-center items-start md:items-center bg-transparent"
+      className="snap-start h-[100svh] w-full flex justify-center items-start md:items-center bg-transparent"
     >
       <div className="w-full max-w-7xl px-4 pt-16 pb-8 md:py-0">
         <div className="grid items-start md:items-center gap-8 md:grid-cols-2">

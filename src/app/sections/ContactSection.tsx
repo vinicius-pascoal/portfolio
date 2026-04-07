@@ -54,15 +54,14 @@ export default function ContactSection() {
     <section
       data-section="true"
       data-index={3}
-      className="snap-start min-h-[100dvh] w-full bg-transparent overflow-hidden flex justify-center items-start md:items-center"
+      className="snap-start h-[100svh] w-full bg-transparent overflow-hidden flex justify-center items-start md:items-center"
     >
       <div className="w-full max-w-7xl px-4 pt-16 pb-8 md:py-0 mx-auto">
         <div className="grid md:grid-cols-2 gap-8 gap-y-12 items-start md:items-center justify-items-center">
           <motion.div
             className="relative z-10 text-center md:text-left max-w-xl"
             initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.3 }}
+            animate="show"
             variants={fadeInUp}
           >
             <p className="text-xs uppercase tracking-[0.3em] text-slate-300/80">
@@ -81,12 +80,11 @@ export default function ContactSection() {
           <motion.div
             className="w-full md:w-[44rem] justify-self-center"
             initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.3 }}
+            animate="show"
             variants={scaleIn}
           >
             <div
-              className="relative mx-auto w-full max-w-xl md:max-w-2xl rounded-2xl bg-slate-900/70 shadow-xl ring-1 ring-white/10 overflow-hidden max-h-[70dvh] md:max-h-[68vh]"
+              className="relative mx-auto w-full max-w-xl md:max-w-2xl rounded-2xl bg-slate-900/70 shadow-xl ring-1 ring-white/10 overflow-hidden max-h-[70svh] md:max-h-[68vh]"
               style={{
                 backgroundImage: `url(${paper.src})`,
                 backgroundSize: "cover",
@@ -97,11 +95,10 @@ export default function ContactSection() {
             >
               <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-sky-400/10 via-transparent to-indigo-500/10" />
               <motion.div
-                className="p-5 md:p-6 space-y-6 overflow-y-auto overscroll-contain max-h-[calc(70dvh-2rem)] md:max-h-[calc(68vh-2rem)]"
+                className="p-5 md:p-6 space-y-6 overflow-y-auto overscroll-contain max-h-[calc(70svh-2rem)] md:max-h-[calc(68vh-2rem)]"
                 variants={staggerParent(0.06)}
                 initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: 0.2 }}
+                animate="show"
               >
                 <div className="space-y-3">
                   <h3 className="text-sm font-semibold tracking-wide text-slate-200/90">

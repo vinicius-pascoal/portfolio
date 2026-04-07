@@ -53,6 +53,8 @@ const SKILLS: Skill[] = [
 const GROUP_ORDER: Group[] = ["Linguagens", "Frameworks & Libs", "Back-end & DB", "Ferramentas"];
 
 export default function SkillsSection() {
+  const [isExpandedMobile, setIsExpandedMobile] = React.useState(false);
+
   const grouped = GROUP_ORDER.map((g) => ({
     group: g,
     items: SKILLS.filter((s) => s.group === g),
@@ -62,9 +64,9 @@ export default function SkillsSection() {
     <section
       data-section="true"
       data-index={2}
-      className="snap-start min-h-screen w-full flex justify-center items-start md:items-center bg-transparent overflow-hidden"
+      className="snap-start h-[100svh] w-full flex justify-center items-start md:items-center bg-transparent overflow-hidden"
     >
-      <div className="w-full max-w-7xl px-4 pt-16 pb-8 md:py-0">
+      <div className="w-full max-w-7xl px-4 pt-12 pb-6 md:py-0">
         <div className="grid items-start md:items-center gap-8 md:grid-cols-2">
           {/* ESQUERDA — título + descrição */}
           <motion.div className="text-left" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeInUp}>
@@ -83,10 +85,10 @@ export default function SkillsSection() {
           {/* DIREITA — cartão com grupos e chips (capado ao viewport + scroll interno) */}
           <motion.div className="md:justify-self-end w-full md:w-[44rem]" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={scaleIn}>
             <div
-              className="relative mx-auto w-full max-w-xl md:max-w-2xl
+              className={`relative mx-auto w-full max-w-xl md:max-w-2xl
                          rounded-2xl bg-slate-900/70 shadow-xl ring-1 ring-white/10
                            overflow-hidden
-                         max-h-[76dvh] md:max-h-[72vh]"
+                         ${isExpandedMobile ? "max-h-[calc(100svh-14rem)]" : "max-h-[calc(100svh-24rem)]"} md:max-h-[72vh]`}
               style={{
                 backgroundImage: `url(${paper.src})`,
                 backgroundSize: "cover",
@@ -97,21 +99,27 @@ export default function SkillsSection() {
             >
               <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-sky-400/10 via-transparent to-indigo-500/10" />
 
-              <motion.div className="p-5 md:p-6 space-y-6 overflow-y-auto overscroll-contain
-                              max-h-[calc(76dvh-2rem)] md:max-h-[calc(72vh-2rem)]" variants={staggerParent(0.05)} initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.2 }}>
+              <motion.div
+                className={`p-4 md:p-6 space-y-5 md:space-y-6 overscroll-contain md:overflow-y-auto
+                              ${isExpandedMobile ? "max-h-[calc(100svh-18.25rem)] overflow-y-auto" : "max-h-[calc(100svh-28.25rem)] overflow-hidden"} md:max-h-[calc(72vh-2rem)]`}
+                variants={staggerParent(0.05)}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ once: true, amount: 0.2 }}
+              >
                 {grouped.map(({ group, items }) => (
                   <div key={group} className="space-y-3">
-                    <h3 className="text-sm font-semibold tracking-wide text-slate-200 ">
+                    <h3 className="text-xs md:text-sm font-semibold tracking-wide text-slate-200 ">
                       {group}
                     </h3>
 
-                    <ul className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    <ul className="grid grid-cols-1 min-[420px]:grid-cols-2 sm:grid-cols-3 gap-2">
                       {items.map((skill) => {
                         const Icon = skill.icon ?? Code2;
                         return (
                           <motion.li key={skill.key} variants={itemPop}>
                             <div
-                              className="group flex items-center gap-2 rounded-xl border bg-slate-900/60 px-3 py-2 text-sm text-slate-200 shadow-sm
+                              className="group flex items-center gap-2 rounded-xl border bg-slate-900/60 px-3 py-2 text-xs md:text-sm text-slate-200 shadow-sm
                                          dark:bg-slate-900/40 dark:text-slate-200 border-white/10
                                          hover:shadow-md transition-all"
                               title={skill.label}
@@ -126,6 +134,17 @@ export default function SkillsSection() {
                   </div>
                 ))}
               </motion.div>
+
+              <div className="md:hidden border-t border-white/10 bg-slate-900/35 backdrop-blur-sm px-4 pb-4 pt-3">
+                <button
+                  type="button"
+                  onClick={() => setIsExpandedMobile((prev) => !prev)}
+                  className="w-full rounded-xl border border-white/20 bg-slate-900/80 px-4 py-2.5 text-sm font-semibold text-slate-100 shadow-sm transition-all hover:bg-slate-800/85 active:scale-[0.99]"
+                  aria-expanded={isExpandedMobile}
+                >
+                  {isExpandedMobile ? "Exibir menos" : "Exibir mais"}
+                </button>
+              </div>
 
               {/* sombra/spot */}
               <div className="pointer-events-none absolute inset-x-0 -bottom-6 mx-auto h-16 w-2/3 rounded-[100%] bg-black/10 blur-2xl" />
