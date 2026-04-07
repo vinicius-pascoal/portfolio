@@ -22,6 +22,8 @@ const SKILLS: Skill[] = [
   { key: "python", label: "Python", group: "Linguagens", icon: Code2 },
   { key: "typescript", label: "TypeScript", group: "Linguagens", icon: Code2 },
   { key: "javascript", label: "JavaScript", group: "Linguagens", icon: Code2 },
+  { key: "dart", label: "Dart", group: "Linguagens", icon: Code2 },
+  { key: "csharp", label: "C#", group: "Linguagens", icon: Code2 },
   { key: "html", label: "HTML5", group: "Linguagens", icon: Code2 },
   { key: "css", label: "CSS3", group: "Linguagens", icon: Code2 },
   { key: "sql", label: "SQL", group: "Linguagens", icon: Code2 },
@@ -31,6 +33,8 @@ const SKILLS: Skill[] = [
   { key: "react", label: "React", group: "Frameworks & Libs", icon: Layers },
   { key: "next", label: "Next.js", group: "Frameworks & Libs", icon: Rocket },
   { key: "tailwind", label: "Tailwind CSS", group: "Frameworks & Libs", icon: Boxes },
+  { key: "flutter", label: "Flutter", group: "Frameworks & Libs", icon: Boxes },
+  { key: "unity", label: "Unity", group: "Frameworks & Libs", icon: Boxes },
   { key: "express", label: "Express", group: "Frameworks & Libs", icon: Server },
   { key: "spring", label: "Spring Boot", group: "Frameworks & Libs", icon: Server },
 
