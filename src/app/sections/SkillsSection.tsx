@@ -62,10 +62,10 @@ export default function SkillsSection() {
     <section
       data-section="true"
       data-index={2}
-      className="snap-start h-screen w-full grid place-items-center bg-transparent overflow-hidden"
+      className="snap-start min-h-screen w-full flex justify-center items-start md:items-center bg-transparent overflow-hidden"
     >
-      <div className="w-full max-w-7xl px-4">
-        <div className="grid items-center gap-8 md:grid-cols-2">
+      <div className="w-full max-w-7xl px-4 pt-16 pb-8 md:py-0">
+        <div className="grid items-start md:items-center gap-8 md:grid-cols-2">
           {/* ESQUERDA — título + descrição */}
           <motion.div className="text-left" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeInUp}>
             <p className="text-xs uppercase tracking-[0.3em] text-slate-300/80">

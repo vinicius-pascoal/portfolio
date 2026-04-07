@@ -29,9 +29,9 @@ export default function ProjectsCarouselSection() {
     <section
       data-section="true"
       data-index={0}
-      className="snap-start min-h-screen w-full flex items-center bg-transparent text-white"
+      className="snap-start min-h-screen w-full flex justify-center items-start md:items-center bg-transparent text-white"
     >
-      <div className="w-full max-w-7xl px-4 py-8 sm:px-6 md:py-0">
+      <div className="w-full max-w-7xl px-4 pt-16 pb-8 sm:px-6 md:py-0">
         <div className="grid items-center gap-6 md:gap-8 md:grid-cols-2">
           {/* ESQUERDA — título + descrição do atalho */}
           <div className="text-center md:text-left">

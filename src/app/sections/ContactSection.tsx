@@ -54,10 +54,10 @@ export default function ContactSection() {
     <section
       data-section="true"
       data-index={3}
-      className="snap-start min-h-[100dvh] w-full bg-transparent overflow-hidden grid place-items-center"
+      className="snap-start min-h-[100dvh] w-full bg-transparent overflow-hidden flex justify-center items-start md:items-center"
     >
-      <div className="w-full max-w-7xl px-4 mx-auto">
-        <div className="grid md:grid-cols-2 gap-8 gap-y-12 items-center justify-items-center">
+      <div className="w-full max-w-7xl px-4 pt-16 pb-8 md:py-0 mx-auto">
+        <div className="grid md:grid-cols-2 gap-8 gap-y-12 items-start md:items-center justify-items-center">
           <motion.div
             className="relative z-10 text-center md:text-left max-w-xl"
             initial="hidden"
