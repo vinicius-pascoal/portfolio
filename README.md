@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio - Vinicius Pascoal
 
-## Getting Started
+Portfolio pessoal em Next.js com layout em secoes full-screen, animacoes com Framer Motion e fundo interativo por modo.
 
-First, run the development server:
+## Preview
+
+![Preview do portfolio](./demo.png)
+
+## Stack
+
+- Next.js 16 (App Router)
+- React 19
+- TypeScript
+- Tailwind CSS 4
+- Framer Motion
+- Lucide React
+
+## Requisitos
+
+- Node.js 20+
+- npm 10+
+
+## Como rodar
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Aplicacao local:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- http://localhost:3000
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Scripts
 
-## Learn More
+```bash
+npm run dev    # ambiente de desenvolvimento (Turbopack)
+npm run build  # build de producao
+npm run start  # sobe o build
+npm run lint   # lint do projeto
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Estrutura principal
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```text
+src/
+	app/
+		page.tsx
+		sections/
+			ProjectsCarouselSection.tsx
+			AboutSection.tsx
+			SkillsSection.tsx
+			ContactSection.tsx
+		api/
+			projetos/
+				route.ts
+	components/
+		CoverflowCarousel.tsx
+		ParticlesBackground.tsx
+		anim.ts
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Como o portfolio esta organizado
 
-## Deploy on Vercel
+- A navegacao principal fica em [src/app/page.tsx](src/app/page.tsx), com 4 secoes em snap vertical.
+- Cada secao recebe a prop `isActive` para controlar animacoes e estado visual.
+- O endpoint [src/app/api/projetos/route.ts](src/app/api/projetos/route.ts) lista imagens em `public/projetos`.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Como adicionar ou atualizar projetos no carrossel
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+1. Adicione a imagem em `public/projetos` com o mesmo nome da chave usada no metadado (exemplo: `planify.png`).
+2. Atualize os metadados em [src/app/sections/ProjectsCarouselSection.tsx](src/app/sections/ProjectsCarouselSection.tsx):
+	 - `projectMeta` (titulo, subtitulo, link)
+	 - `files` (ordem de exibicao)
+
+## Contato e redes
+
+- Os dados da secao de contato ficam em [src/app/sections/ContactSection.tsx](src/app/sections/ContactSection.tsx).
+- Itens de contato: array `CONTACTS`.
+- Redes sociais: array `SOCIALS`.
+
+## Deploy
+
+Ambiente de producao (Vercel):
+
+- https://viniciusp-portfolio.vercel.app/
+
+Fluxo recomendado:
+
+```bash
+npm run build
+npm run start
+```
