@@ -1,30 +1,48 @@
 
 "use client";
 
-import React, { useMemo } from "react";
 import CoverflowCarousel from "@/components/CoverflowCarousel";
 
-const projectMeta: Record<string, { title: string; subtitle: string }> = {
-  cardapio: { title: "Cardápio", subtitle: "Menus com fotos e descrições" },
-  cestas: { title: "Cestas", subtitle: "E-commerce simples e rápido" },
-  crossword: { title: "Crossword", subtitle: "Palavras-cruzadas web" },
-  forca: { title: "Forca", subtitle: "Jogo web com teclado virtual" },
-  todoList: { title: "To‑Do", subtitle: "Tarefas com persistência" },
+const projectMeta: Record<string, { title: string; subtitle: string; href: string }> = {
+  cardapio: {
+    title: "Cardápio",
+    subtitle: "Menus com fotos e descrições",
+    href: "https://github.com/vinicius-pascoal/cardapio",
+  },
+  cestas: {
+    title: "Cestas",
+    subtitle: "E-commerce simples e rápido",
+    href: "https://github.com/vinicius-pascoal/cestasAfetos",
+  },
+  crossword: {
+    title: "Crossword",
+    subtitle: "Palavras-cruzadas web",
+    href: "https://github.com/vinicius-pascoal/crossword",
+  },
+  forca: {
+    title: "Forca",
+    subtitle: "Jogo web com teclado virtual",
+    href: "https://github.com/vinicius-pascoal/forca",
+  },
+  todoList: {
+    title: "To‑Do",
+    subtitle: "Tarefas com persistência",
+    href: "https://github.com/vinicius-pascoal/todoList",
+  },
 };
 
 const imageBase = "/projetos";
+const files = ["cardapio", "cestas", "crossword", "forca", "todoList"];
+
+const items = files.map((k) => ({
+  id: k,
+  title: projectMeta[k]?.title,
+  subtitle: projectMeta[k]?.subtitle,
+  imageUrl: `${imageBase}/${k}.png`,
+  href: projectMeta[k]?.href,
+}));
 
 export default function ProjectsCarouselSection() {
-  const files = ["cardapio", "cestas", "crossword", "forca", "todoList"];
-  const items = useMemo(() => {
-    return files.map((k) => ({
-      id: k,
-      title: projectMeta[k]?.title,
-      subtitle: projectMeta[k]?.subtitle,
-      imageUrl: `${imageBase}/${k}.png`,
-    }));
-  }, []);
-
   return (
     <section
       data-section="true"

@@ -8,6 +8,7 @@ export type CoverflowItem = {
   title?: string;
   subtitle?: string;
   imageUrl: string;
+  href?: string;
 };
 
 type Props = {
@@ -104,6 +105,41 @@ export default function CoverflowCarousel({ items, className }: Props) {
           const blur = isCenter ? 0 : Math.min(4, abs * 1);
           const visible = abs <= (isMobile ? 1 : 2);
 
+          const card = (
+            <div className="relative h-full rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/10">
+              <img
+                src={item.imageUrl}
+                alt={item.title ?? ""}
+                className="absolute inset-0 h-full w-full object-cover"
+              />
+
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,18,20,0.0)_0%,rgba(18,18,20,0.6)_55%,rgba(18,18,20,0.9)_100%)]" />
+
+              <div className="relative z-10 h-full p-4 md:p-5 grid grid-rows-[auto_1fr_auto_auto] text-white">
+                <div className="mt-2">
+                  <h3 className="text-center text-lg md:text-xl font-extrabold tracking-wide">
+                    {item.title ?? ""}
+                  </h3>
+                  <div className="mx-auto mt-2 h-0.5 w-24 rounded bg-cyan-700" />
+                </div>
+
+                <div />
+
+                <div className="flex items-end justify-center gap-2">
+                  {item.subtitle && (
+                    <p className="text-center text-xs sm:text-sm/5 text-white/90">{item.subtitle}</p>
+                  )}
+                </div>
+
+                {item.href && (
+                  <span className="mt-2 justify-self-center rounded-full border border-white/15 bg-black/35 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/90 backdrop-blur">
+                    Abrir projeto
+                  </span>
+                )}
+              </div>
+            </div>
+          );
+
           return (
             <figure
               key={String(item.id)}
@@ -118,36 +154,22 @@ export default function CoverflowCarousel({ items, className }: Props) {
                 filter: `blur(${blur}px)`,
                 pointerEvents: visible ? "auto" : "none",
               }}
-              onClick={() => setIndex(i)}
               aria-hidden={!isCenter}
             >
-              <div className="relative h-full rounded-2xl overflow-hidden shadow-2xl ring-1 ring-black/10">
-                {/* image */}
-                <img
-                  src={item.imageUrl}
-                  alt={item.title ?? ""}
-                  className="absolute inset-0 h-full w-full object-cover"
-                />
-
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,18,20,0.0)_0%,rgba(18,18,20,0.6)_55%,rgba(18,18,20,0.9)_100%)]" />
-
-                {/* Content */}
-                <figcaption className="relative z-10 h-full p-4 md:p-5 grid grid-rows-[auto_1fr_auto] text-white">
-                  <div className="mt-2">
-                    <h3 className="text-center text-lg md:text-xl font-extrabold tracking-wide">
-                      {item.title ?? ""}
-                    </h3>
-                    <div className="mx-auto mt-2 h-0.5 w-24 rounded bg-cyan-700" />
-                  </div>
-
-                  <div />
-
-                  {item.subtitle && (
-                    <p className="text-center text-xs sm:text-sm/5 text-white/90">{item.subtitle}</p>
-                  )}
-                </figcaption>
-              </div>
+              {item.href ? (
+                <a
+                  href={item.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block h-full w-[calc(100%-1.5rem)] mx-auto cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+                  aria-label={`Abrir ${item.title ?? "projeto"}`}
+                  title={`Abrir ${item.title ?? "projeto"}`}
+                >
+                  {card}
+                </a>
+              ) : (
+                card
+              )}
             </figure>
           );
         })}
@@ -168,8 +190,8 @@ export default function CoverflowCarousel({ items, className }: Props) {
       </div>
 
       {/* Controls (desktop only visible) */}
-      <div className="pointer-events-none absolute inset-0 hidden md:block">
-        <div className="absolute inset-y-0 left-0 grid place-items-center">
+      <div className="pointer-events-none absolute inset-0 z-[200] hidden md:block">
+        <div className="absolute inset-y-0 left-0 z-[200] grid place-items-center">
           <button
             type="button"
             onClick={() => go(-1)}
@@ -179,7 +201,7 @@ export default function CoverflowCarousel({ items, className }: Props) {
             ◀
           </button>
         </div>
-        <div className="absolute inset-y-0 right-0 grid place-items-center">
+        <div className="absolute inset-y-0 right-0 z-[200] grid place-items-center">
           <button
             type="button"
             onClick={() => go(1)}
