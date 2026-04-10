@@ -62,11 +62,28 @@ type SkillsSectionProps = {
 
 export default function SkillsSection({ isActive }: SkillsSectionProps) {
   const [isExpandedMobile, setIsExpandedMobile] = React.useState(false);
+  const [isMobile, setIsMobile] = React.useState(false);
+
+  React.useEffect(() => {
+    const updateIsMobile = () => setIsMobile(window.innerWidth < 768);
+    updateIsMobile();
+    window.addEventListener("resize", updateIsMobile);
+
+    return () => window.removeEventListener("resize", updateIsMobile);
+  }, []);
+
+  const mobileCardMaxHeight = isExpandedMobile ? "max-h-[80svh]" : "max-h-[52svh]";
+  const mobileContentMaxHeight = isExpandedMobile
+    ? "max-h-[calc(80svh-4rem)] overflow-y-auto"
+    : "max-h-[calc(52svh-4rem)] overflow-hidden";
+  const mobileBottomSpacing = isMobile && isExpandedMobile ? "pb-8" : "pb-4";
 
   const grouped = GROUP_ORDER.map((g) => ({
     group: g,
     items: SKILLS.filter((s) => s.group === g),
   })).filter((g) => g.items.length > 0);
+
+  const visibleGroups = isMobile && !isExpandedMobile ? grouped.slice(0, 2) : grouped;
 
   return (
     <section
@@ -74,18 +91,18 @@ export default function SkillsSection({ isActive }: SkillsSectionProps) {
       data-index={2}
       className="snap-start h-[100svh] w-full flex justify-center items-start md:items-center bg-transparent overflow-hidden"
     >
-      <div className="w-full max-w-7xl px-4 pt-8 pb-6 sm:px-6 sm:pt-10 md:py-0">
-        <div className="grid items-start gap-5 md:items-center md:grid-cols-2 md:gap-8">
+      <div className={`w-full max-w-7xl px-3 pt-5 ${mobileBottomSpacing} sm:px-6 sm:pt-10 md:py-0`}>
+        <div className="grid items-start gap-4 md:items-center md:grid-cols-2 md:gap-8">
           {/* ESQUERDA — título + descrição */}
           <motion.div className="text-left" initial="hidden" animate={isActive ? "show" : "hidden"} variants={fadeInUp}>
             <p className="text-xs uppercase tracking-[0.3em] text-slate-300/80">
               Tecnologias & Skills
             </p>
-            <h2 className="mt-1 text-2xl sm:text-3xl md:mt-2 md:text-5xl font-extrabold text-white drop-shadow">
+            <h2 className="mt-1 text-xl sm:text-3xl md:mt-2 md:text-5xl font-extrabold text-white drop-shadow">
               Minha stack e ferramentas
             </h2>
 
-            <p className="mt-2 max-w-prose text-sm sm:text-base text-slate-300/90 leading-relaxed md:mt-4">
+            <p className="mt-2 max-w-prose text-xs sm:text-base text-slate-300/90 leading-relaxed md:mt-4">
               Aqui estão as tecnologias e ferramentas que utilizo no dia a dia.
             </p>
           </motion.div>
@@ -96,7 +113,7 @@ export default function SkillsSection({ isActive }: SkillsSectionProps) {
               className={`relative mx-auto w-full max-w-xl md:max-w-2xl
                          rounded-2xl bg-slate-900/70 shadow-xl ring-1 ring-white/10
                            overflow-hidden
-                         ${isExpandedMobile ? "max-h-[calc(100svh-14rem)]" : "max-h-[calc(100svh-24rem)]"} md:max-h-[72vh]`}
+                         ${mobileCardMaxHeight} md:max-h-[72vh]`}
               style={{
                 backgroundImage: `url(${paper.src})`,
                 backgroundSize: "cover",
@@ -109,12 +126,12 @@ export default function SkillsSection({ isActive }: SkillsSectionProps) {
 
               <motion.div
                 className={`p-4 md:p-6 space-y-5 md:space-y-6 overscroll-contain md:overflow-y-auto
-                              ${isExpandedMobile ? "max-h-[calc(100svh-18.25rem)] overflow-y-auto" : "max-h-[calc(100svh-28.25rem)] overflow-hidden"} md:max-h-[calc(72vh-2rem)]`}
+                              ${mobileContentMaxHeight} md:max-h-[calc(72vh-2rem)]`}
                 variants={staggerParent(0.05)}
                 initial="hidden"
                 animate={isActive ? "show" : "hidden"}
               >
-                {grouped.map(({ group, items }) => (
+                {visibleGroups.map(({ group, items }) => (
                   <div key={group} className="space-y-3">
                     <h3 className="text-xs md:text-sm font-semibold tracking-wide text-slate-200 ">
                       {group}
