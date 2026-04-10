@@ -1,9 +1,7 @@
 
 "use client";
 
-import { motion } from "framer-motion";
 import CoverflowCarousel from "@/components/CoverflowCarousel";
-import { fadeInUp, scaleIn } from "@/components/anim";
 
 const projectMeta: Record<string, { title: string; subtitle: string; href: string }> = {
   "2048": {
@@ -59,6 +57,8 @@ type ProjectsCarouselSectionProps = {
 };
 
 export default function ProjectsCarouselSection({ isActive }: ProjectsCarouselSectionProps) {
+  void isActive;
+
   return (
     <section
       data-section="true"
@@ -68,7 +68,7 @@ export default function ProjectsCarouselSection({ isActive }: ProjectsCarouselSe
       <div className="w-full max-w-7xl px-4 pt-16 pb-8 sm:px-6 md:py-0">
         <div className="grid items-center gap-6 md:gap-8 md:grid-cols-2">
           {/* ESQUERDA — título + descrição do atalho */}
-          <motion.div className="text-center md:text-left" initial="hidden" animate={isActive ? "show" : "hidden"} variants={fadeInUp}>
+          <div className="text-center md:text-left">
             <p className="text-[11px] sm:text-xs uppercase tracking-[0.28em] text-slate-300/80">
               Projetos em destaque
             </p>
@@ -79,12 +79,12 @@ export default function ProjectsCarouselSection({ isActive }: ProjectsCarouselSe
               Aqui estão alguns dos meus projetos web, desenvolvidos com foco em
               usabilidade e design responsivo.
             </p>
-          </motion.div>
+          </div>
 
           {/* DIREITA — carrossel */}
-          <motion.div className="w-full max-w-md mx-auto md:max-w-none" initial="hidden" animate={isActive ? "show" : "hidden"} variants={scaleIn}>
+          <div className="w-full max-w-md mx-auto md:max-w-none">
             <CoverflowCarousel items={items} />
-          </motion.div>
+          </div>
         </div>
       </div>
     </section>

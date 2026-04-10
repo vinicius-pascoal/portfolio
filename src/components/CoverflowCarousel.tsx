@@ -96,16 +96,16 @@ export default function CoverflowCarousel({ items, className }: Props) {
   };
 
   return (
-    <div className={["relative select-none w-full", className].filter(Boolean).join(" ")} style={{ maxWidth: "100vw" }}>
+    <div className={["relative isolate select-none w-full", className].filter(Boolean).join(" ")} style={{ maxWidth: "100vw" }}>
       {/* Track */}
       <div
         ref={trackRef}
         className="relative w-full"
         style={{ height: trackHeight }}
         aria-roledescription="coverflow"
-        onTouchStart={onTouchStart}
-        onTouchMove={onTouchMove}
-        onTouchEnd={onTouchEnd}
+        onTouchStart={isMobile ? onTouchStart : undefined}
+        onTouchMove={isMobile ? onTouchMove : undefined}
+        onTouchEnd={isMobile ? onTouchEnd : undefined}
       >
         {items.map((item, i) => {
           const offset = circularOffset(i, index, items.length);
@@ -175,16 +175,16 @@ export default function CoverflowCarousel({ items, className }: Props) {
           return (
             <figure
               key={String(item.id)}
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2"
+              className="absolute left-1/2 top-1/2"
               style={{
                 width: cardWidth,
                 height: cardHeight,
-                transform: `translateX(${translateX}px) rotate(${rotate}deg) scale(${scale})`,
+                transform: `translate(-50%, -50%) translateX(${translateX}px) rotate(${rotate}deg) scale(${scale})`,
                 transition: "transform 400ms cubic-bezier(.2,.7,.2,1), opacity 400ms, filter 400ms",
                 zIndex: z,
                 opacity: visible ? opacity : 0,
                 filter: `blur(${blur}px)`,
-                pointerEvents: visible ? "auto" : "none",
+                pointerEvents: visible && isCenter ? "auto" : "none",
               }}
               aria-hidden={!isCenter}
             >
@@ -193,7 +193,7 @@ export default function CoverflowCarousel({ items, className }: Props) {
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="block h-full w-[calc(100%-1.5rem)] mx-auto cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+                  className="block h-full w-full cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
                   aria-label={`Abrir ${item.title ?? "projeto"}`}
                   title={`Abrir ${item.title ?? "projeto"}`}
                 >
@@ -205,6 +205,45 @@ export default function CoverflowCarousel({ items, className }: Props) {
             </figure>
           );
         })}
+
+        {/* Controls (desktop only visible) */}
+        <button
+          type="button"
+          onPointerDown={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            go(-1);
+          }}
+          className="absolute left-0 top-0 bottom-0 z-[9999] hidden w-14 items-center justify-center md:flex"
+          aria-label="Anterior"
+        >
+          <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-sm text-white transition-colors hover:bg-white/30">
+            ◀
+          </span>
+        </button>
+
+        <button
+          type="button"
+          onPointerDown={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            go(1);
+          }}
+          className="absolute right-0 top-0 bottom-0 z-[9999] hidden w-14 items-center justify-center md:flex"
+          aria-label="Próximo"
+        >
+          <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-sm text-white transition-colors hover:bg-white/30">
+            ▶
+          </span>
+        </button>
       </div>
 
       {/* Mobile swipe hint */}
@@ -218,30 +257,6 @@ export default function CoverflowCarousel({ items, className }: Props) {
           <span className="text-white/70">◀</span>
           <span>Deslize para navegar</span>
           <span className="text-white/70">▶</span>
-        </div>
-      </div>
-
-      {/* Controls (desktop only visible) */}
-      <div className="pointer-events-none absolute inset-0 z-[200] hidden md:block">
-        <div className="absolute inset-y-0 left-0 z-[200] grid place-items-center">
-          <button
-            type="button"
-            onClick={() => go(-1)}
-            className="pointer-events-auto rounded-full bg-white/10 hover:bg-white/20 backdrop-blur px-3 py-2 text-white text-sm"
-            aria-label="Anterior"
-          >
-            ◀
-          </button>
-        </div>
-        <div className="absolute inset-y-0 right-0 z-[200] grid place-items-center">
-          <button
-            type="button"
-            onClick={() => go(1)}
-            className="pointer-events-auto rounded-full bg-white/10 hover:bg-white/20 backdrop-blur px-3 py-2 text-white text-sm"
-            aria-label="Próximo"
-          >
-            ▶
-          </button>
         </div>
       </div>
 
