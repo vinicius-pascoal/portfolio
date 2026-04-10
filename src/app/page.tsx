@@ -77,7 +77,7 @@ export default function Page() {
         className="relative h-[100svh] w-full max-w-full overflow-x-hidden overflow-y-scroll snap-y snap-mandatory custom-scrollbar"
       >
         {/* Seção 1 - Galáxia */}
-        <ProjectsCarouselSection />
+        <ProjectsCarouselSection isActive={mode === 0} />
 
         {/* Seção 2 - Ondas */}
         <AboutSection isActive={mode === 1} />
