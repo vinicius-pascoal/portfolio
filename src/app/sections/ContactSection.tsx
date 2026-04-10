@@ -58,9 +58,9 @@ export default function ContactSection({ isActive }: ContactSectionProps) {
     <section
       data-section="true"
       data-index={3}
-      className="snap-start h-[100svh] w-full bg-transparent overflow-hidden flex justify-center items-start md:items-center"
+      className="snap-start min-h-[100svh] md:h-[100svh] w-full bg-transparent overflow-y-auto md:overflow-hidden flex justify-center items-start md:items-center"
     >
-      <div className="w-full max-w-7xl px-4 pt-8 pb-6 sm:px-6 sm:pt-10 md:py-0 mx-auto">
+      <div className="w-full max-w-7xl px-4 pt-8 pb-8 sm:px-6 sm:pt-10 md:py-0 mx-auto">
         <div className="grid md:grid-cols-2 gap-5 md:gap-8 gap-y-8 md:gap-y-12 items-start md:items-center justify-items-center">
           <motion.div
             className="relative z-10 text-center md:text-left max-w-xl"
@@ -88,7 +88,7 @@ export default function ContactSection({ isActive }: ContactSectionProps) {
             variants={scaleIn}
           >
             <div
-              className="relative mx-auto w-full max-w-xl md:max-w-2xl rounded-2xl bg-slate-900/70 shadow-xl ring-1 ring-white/10 overflow-hidden max-h-[68svh] md:max-h-[68vh]"
+              className="relative mx-auto w-full max-w-xl md:max-w-2xl rounded-xl md:rounded-2xl bg-slate-900/70 shadow-xl ring-1 ring-white/10 overflow-hidden max-h-[74svh] md:max-h-[68vh]"
               style={{
                 backgroundImage: `url(${paper.src})`,
                 backgroundSize: "cover",
@@ -99,7 +99,7 @@ export default function ContactSection({ isActive }: ContactSectionProps) {
             >
               <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-sky-400/10 via-transparent to-indigo-500/10" />
               <motion.div
-                className="p-4 sm:p-5 md:p-6 space-y-5 md:space-y-6 overflow-y-auto overscroll-contain max-h-[calc(68svh-2rem)] md:max-h-[calc(68vh-2rem)]"
+                className="p-4 sm:p-5 md:p-6 space-y-5 md:space-y-6 overflow-y-auto overscroll-contain max-h-[calc(74svh-2rem)] md:max-h-[calc(68vh-2rem)]"
                 variants={staggerParent(0.06)}
                 initial="hidden"
                 animate={isActive ? "show" : "hidden"}
@@ -111,17 +111,17 @@ export default function ContactSection({ isActive }: ContactSectionProps) {
                   <ul className="space-y-2">
                     {CONTACTS.map(({ key, label, value, href, icon: Icon }) => (
                       <motion.li key={key} variants={itemPop}>
-                        <div className="flex items-center justify-between gap-3 rounded-xl border border-white/10 bg-slate-900/60 px-3 py-2 text-sm text-slate-200 shadow-sm">
-                          <div className="flex items-center gap-3 min-w-0">
+                        <div className="flex items-start sm:items-center justify-between gap-3 rounded-xl border border-white/10 bg-slate-900/60 px-3 py-2 text-sm text-slate-200 shadow-sm">
+                          <div className="flex items-center gap-3 min-w-0 flex-1">
                             <Icon className="h-4 w-4 opacity-80 shrink-0" aria-hidden="true" />
                             <div className="min-w-0">
                               <p className="text-slate-400">{label}</p>
-                              <p className="truncate font-medium">{value}</p>
+                              <p className="font-medium break-all sm:break-normal sm:truncate">{value}</p>
                             </div>
                           </div>
 
-                          <div className="flex items-center gap-2 shrink-0">
-                            {href && (
+                          <div className="flex flex-wrap justify-end items-center gap-2 shrink-0">
+                            {href && key !== "phone" && (
                               <a
                                 href={href}
                                 target={href.startsWith("http") ? "_blank" : undefined}
@@ -133,22 +133,24 @@ export default function ContactSection({ isActive }: ContactSectionProps) {
                                 Abrir
                               </a>
                             )}
-                            <button
-                              onClick={() => copy(value, key)}
-                              className="inline-flex items-center gap-1 rounded-lg border border-white/10 bg-slate-800/50 px-2 py-1 text-xs hover:bg-slate-900/30"
-                              aria-label={`Copiar ${label}`}
-                              title={`Copiar ${label}`}
-                            >
-                              {copied === key ? (
-                                <>
-                                  <Check className="h-3.5 w-3.5" /> Copiado
-                                </>
-                              ) : (
-                                <>
-                                  <Copy className="h-3.5 w-3.5" /> Copiar
-                                </>
-                              )}
-                            </button>
+                            {key !== "whatsapp" && (
+                              <button
+                                onClick={() => copy(value, key)}
+                                className="inline-flex items-center gap-1 rounded-lg border border-white/10 bg-slate-800/50 px-2 py-1 text-xs hover:bg-slate-900/30"
+                                aria-label={`Copiar ${label}`}
+                                title={`Copiar ${label}`}
+                              >
+                                {copied === key ? (
+                                  <>
+                                    <Check className="h-3.5 w-3.5" /> Copiado
+                                  </>
+                                ) : (
+                                  <>
+                                    <Copy className="h-3.5 w-3.5" /> Copiar
+                                  </>
+                                )}
+                              </button>
+                            )}
                           </div>
                         </div>
                       </motion.li>
