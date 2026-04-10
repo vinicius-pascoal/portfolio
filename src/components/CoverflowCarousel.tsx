@@ -2,7 +2,6 @@
 "use client";
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import paper from "@/images/cartographer.png";
 
 export type CoverflowItem = {
   id: string | number;
@@ -130,44 +129,29 @@ export default function CoverflowCarousel({ items, className }: Props) {
                 className="absolute inset-0 h-full w-full object-cover"
               />
 
-              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,18,20,0.0)_30%,rgba(18,18,20,0.38)_55%,rgba(18,18,20,0.78)_100%)]" />
+              <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(18,18,20,0.0)_0%,rgba(18,18,20,0.6)_55%,rgba(18,18,20,0.9)_100%)]" />
 
-              <div className="absolute inset-x-3 top-3 z-10 rounded-xl border border-white/15 bg-slate-900/65 px-3 py-2 text-white shadow-lg ring-1 ring-black/20 backdrop-blur-sm"
-                style={{
-                  backgroundImage: `url(${paper.src})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
-                }}
-              >
-                <div className="absolute inset-0 rounded-xl pointer-events-none bg-gradient-to-br from-sky-400/10 via-transparent to-indigo-500/10" />
-                <h3 className="relative z-10 text-[12px] sm:text-sm md:text-base font-extrabold tracking-wide text-slate-100">
-                  {item.title ?? ""}
-                </h3>
-              </div>
+              <div className="relative z-10 h-full p-4 md:p-5 grid grid-rows-[auto_1fr_auto_auto] text-white">
+                <div className="mt-2">
+                  <h3 className="text-center text-lg md:text-xl font-extrabold tracking-wide">
+                    {item.title ?? ""}
+                  </h3>
+                  <div className="mx-auto mt-2 h-0.5 w-24 rounded bg-cyan-700" />
+                </div>
 
-              <div className="absolute inset-x-3 bottom-3 z-10 rounded-xl border border-white/15 bg-slate-900/65 p-3 text-white shadow-lg ring-1 ring-black/20 backdrop-blur-sm"
-                style={{
-                  backgroundImage: `url(${paper.src})`,
-                  backgroundSize: "cover",
-                  backgroundPosition: "center",
-                  backgroundRepeat: "no-repeat",
-                }}
-              >
-                <div className="absolute inset-0 rounded-xl pointer-events-none bg-gradient-to-br from-sky-400/10 via-transparent to-indigo-500/10" />
+                <div />
 
-                <div className="relative z-10">
+                <div className="flex items-end justify-center gap-2">
                   {item.subtitle && (
-                    <p className="text-[10px] sm:text-[11px] md:text-xs leading-relaxed text-slate-200/90 line-clamp-2">{item.subtitle}</p>
-                  )}
-
-                  {item.href && (
-                    <span className="mt-2 inline-flex rounded-full border border-white/20 bg-slate-900/70 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.12em] text-slate-100 md:px-2.5 md:py-1 md:text-[10px] md:tracking-[0.16em]">
-                      <span className="md:hidden">Visualizar</span>
-                      <span className="hidden md:inline">Visualizar projeto</span>
-                    </span>
+                    <p className="text-center text-xs sm:text-sm/5 text-white/90">{item.subtitle}</p>
                   )}
                 </div>
+
+                {item.href && (
+                  <span className="mt-2 justify-self-center rounded-full border border-white/15 bg-black/35 px-2.5 py-1 text-[10px] font-semibold uppercase tracking-[0.18em] text-white/90 backdrop-blur">
+                    Abrir projeto
+                  </span>
+                )}
               </div>
             </div>
           );
