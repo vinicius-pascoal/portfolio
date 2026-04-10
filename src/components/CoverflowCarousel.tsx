@@ -40,7 +40,6 @@ function circularOffset(itemIndex: number, activeIndex: number, length: number) 
 export default function CoverflowCarousel({ items, className }: Props) {
   const [index, setIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
-  const [hasTouched, setHasTouched] = useState(false);
   const trackRef = useRef<HTMLDivElement | null>(null);
   const touchStartX = useRef<number | null>(null);
   const touchDeltaX = useRef(0);
@@ -90,7 +89,6 @@ export default function CoverflowCarousel({ items, className }: Props) {
     if (Math.abs(touchDeltaX.current) >= 40) {
       go(touchDeltaX.current < 0 ? 1 : -1);
     }
-    if (!hasTouched) setHasTouched(true);
     touchStartX.current = null;
     touchDeltaX.current = 0;
   };
@@ -162,10 +160,17 @@ export default function CoverflowCarousel({ items, className }: Props) {
                   )}
 
                   {item.href && (
-                    <span className="mt-2 inline-flex rounded-full border border-white/20 bg-slate-900/70 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.12em] text-slate-100 md:px-2.5 md:py-1 md:text-[10px] md:tracking-[0.16em]">
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-2 inline-flex rounded-full border border-white/20 bg-slate-900/70 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.12em] text-slate-100 md:px-2.5 md:py-1 md:text-[10px] md:tracking-[0.16em]"
+                      aria-label={`Visualizar ${item.title ?? "projeto"}`}
+                      title={`Visualizar ${item.title ?? "projeto"}`}
+                    >
                       <span className="md:hidden">Visualizar</span>
                       <span className="hidden md:inline">Visualizar projeto</span>
-                    </span>
+                    </a>
                   )}
                 </div>
               </div>
@@ -188,20 +193,7 @@ export default function CoverflowCarousel({ items, className }: Props) {
               }}
               aria-hidden={!isCenter}
             >
-              {item.href ? (
-                <a
-                  href={item.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="block h-full w-full cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-300 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
-                  aria-label={`Abrir ${item.title ?? "projeto"}`}
-                  title={`Abrir ${item.title ?? "projeto"}`}
-                >
-                  {card}
-                </a>
-              ) : (
-                card
-              )}
+              {card}
             </figure>
           );
         })}
@@ -247,12 +239,9 @@ export default function CoverflowCarousel({ items, className }: Props) {
       </div>
 
       {/* Mobile swipe hint */}
-      <div className="mt-2 flex items-center justify-center md:hidden" aria-hidden={hasTouched}>
+      <div className="mt-2 flex items-center justify-center md:hidden">
         <div
-          className={[
-            "flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1.5 text-[11px] tracking-wide text-white/80 backdrop-blur",
-            hasTouched ? "opacity-0 transition-opacity duration-300" : "opacity-100 animate-pulse",
-          ].join(" ")}
+          className="flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1.5 text-[11px] tracking-wide text-white/80 backdrop-blur"
         >
           <span className="text-white/70">◀</span>
           <span>Deslize para navegar</span>
