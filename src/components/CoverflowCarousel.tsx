@@ -20,6 +20,22 @@ function clamp(n: number, a: number, b: number) {
   return Math.max(a, Math.min(b, n));
 }
 
+function wrapIndex(n: number, length: number) {
+  if (length <= 0) return 0;
+  return ((n % length) + length) % length;
+}
+
+function circularOffset(itemIndex: number, activeIndex: number, length: number) {
+  if (length <= 1) return 0;
+  let offset = itemIndex - activeIndex;
+  const half = Math.floor(length / 2);
+
+  if (offset > half) offset -= length;
+  if (offset < -half) offset += length;
+
+  return offset;
+}
+
 export default function CoverflowCarousel({ items, className }: Props) {
   const [index, setIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
@@ -29,7 +45,7 @@ export default function CoverflowCarousel({ items, className }: Props) {
   const touchDeltaX = useRef(0);
 
   const go = useCallback((dir: number) => {
-    setIndex((i) => clamp(i + dir, 0, items.length - 1));
+    setIndex((i) => wrapIndex(i + dir, items.length));
   }, [items.length]);
 
   useEffect(() => {
@@ -41,7 +57,7 @@ export default function CoverflowCarousel({ items, className }: Props) {
   }, []);
 
   useEffect(() => {
-    setIndex((i) => clamp(i, 0, Math.max(0, items.length - 1)));
+    setIndex((i) => wrapIndex(i, items.length));
   }, [items.length]);
 
   useEffect(() => {
@@ -91,7 +107,7 @@ export default function CoverflowCarousel({ items, className }: Props) {
         onTouchEnd={onTouchEnd}
       >
         {items.map((item, i) => {
-          const offset = i - index;
+          const offset = circularOffset(i, index, items.length);
 
           // style math for coverflow
           const isCenter = offset === 0;
