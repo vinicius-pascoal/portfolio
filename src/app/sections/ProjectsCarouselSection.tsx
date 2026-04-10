@@ -4,35 +4,45 @@
 import CoverflowCarousel from "@/components/CoverflowCarousel";
 
 const projectMeta: Record<string, { title: string; subtitle: string; href: string }> = {
-  cardapio: {
-    title: "Cardápio",
-    subtitle: "Menus com fotos e descrições",
-    href: "https://github.com/vinicius-pascoal/cardapio",
+  "2048": {
+    title: "2048",
+    subtitle: "Quebra-cabeca numerico classico",
+    href: "https://github.com/vinicius-pascoal/2048_game",
   },
-  cestas: {
-    title: "Cestas",
-    subtitle: "E-commerce simples e rápido",
-    href: "https://github.com/vinicius-pascoal/cestasAfetos",
+  asciiMorph: {
+    title: "ASCII Morph",
+    subtitle: "Conversor de imagens e GIF para arte ASCII",
+    href: "https://github.com/vinicius-pascoal/AsciiMorph",
   },
-  crossword: {
-    title: "Crossword",
-    subtitle: "Palavras-cruzadas web",
-    href: "https://github.com/vinicius-pascoal/crossword",
+  "biblioteca-magica": {
+    title: "Biblioteca Magica",
+    subtitle: "Conversor de pdf para epub",
+    href: "https://github.com/vinicius-pascoal/biblioteca-magica",
   },
-  forca: {
-    title: "Forca",
-    subtitle: "Jogo web com teclado virtual",
-    href: "https://github.com/vinicius-pascoal/forca",
+  geradorRecibos: {
+    title: "Gerador de Recibos",
+    subtitle: "Criação rápida de recibos em PDF",
+    href: "https://github.com/vinicius-pascoal/automacao-recibo-cestas",
   },
-  todoList: {
-    title: "To‑Do",
-    subtitle: "Tarefas com persistência",
-    href: "https://github.com/vinicius-pascoal/todoList",
+  planify: {
+    title: "Planify",
+    subtitle: "plataforma kanban para organização pessoal e de equipes",
+    href: "https://github.com/vinicius-pascoal/Kanban-To-Do-Full-Stack",
+  },
+  runebound: {
+    title: "Runebound",
+    subtitle: "jogo no estilo conect-four ",
+    href: "https://github.com/vinicius-pascoal/Runebound",
+  },
+  voidcrypt: {
+    title: "Voidcrypt",
+    subtitle: "jogo de exploracao de masmorras",
+    href: "https://github.com/vinicius-pascoal/Voidcrypt",
   },
 };
 
 const imageBase = "/projetos";
-const files = ["cardapio", "cestas", "crossword", "forca", "todoList"];
+const files = ["planify", "2048", "asciiMorph", "biblioteca-magica", "geradorRecibos", "runebound", "voidcrypt"];
 
 const items = files.map((k) => ({
   id: k,
