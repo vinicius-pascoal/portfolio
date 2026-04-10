@@ -39,7 +39,11 @@ const SOCIALS: SocialItem[] = [
   { key: "instagram", label: "Instagram", href: "https://www.instagram.com/vinicius_pascoal_q", icon: Instagram },
 ];
 
-export default function ContactSection() {
+type ContactSectionProps = {
+  isActive: boolean;
+};
+
+export default function ContactSection({ isActive }: ContactSectionProps) {
   const [copied, setCopied] = useState<string | null>(null);
 
   const copy = async (text: string, key: string) => {
@@ -61,7 +65,7 @@ export default function ContactSection() {
           <motion.div
             className="relative z-10 text-center md:text-left max-w-xl"
             initial="hidden"
-            animate="show"
+            animate={isActive ? "show" : "hidden"}
             variants={fadeInUp}
           >
             <p className="text-xs uppercase tracking-[0.3em] text-slate-300/80">
@@ -80,7 +84,7 @@ export default function ContactSection() {
           <motion.div
             className="w-full md:max-w-2xl justify-self-center"
             initial="hidden"
-            animate="show"
+            animate={isActive ? "show" : "hidden"}
             variants={scaleIn}
           >
             <div
@@ -98,7 +102,7 @@ export default function ContactSection() {
                 className="p-5 md:p-6 space-y-6 overflow-y-auto overscroll-contain max-h-[calc(70svh-2rem)] md:max-h-[calc(68vh-2rem)]"
                 variants={staggerParent(0.06)}
                 initial="hidden"
-                animate="show"
+                animate={isActive ? "show" : "hidden"}
               >
                 <div className="space-y-3">
                   <h3 className="text-sm font-semibold tracking-wide text-slate-200/90">

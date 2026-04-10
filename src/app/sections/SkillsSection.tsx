@@ -56,7 +56,11 @@ const SKILLS: Skill[] = [
 
 const GROUP_ORDER: Group[] = ["Linguagens", "Frameworks & Libs", "Back-end & DB", "Ferramentas"];
 
-export default function SkillsSection() {
+type SkillsSectionProps = {
+  isActive: boolean;
+};
+
+export default function SkillsSection({ isActive }: SkillsSectionProps) {
   const [isExpandedMobile, setIsExpandedMobile] = React.useState(false);
 
   const grouped = GROUP_ORDER.map((g) => ({
@@ -73,7 +77,7 @@ export default function SkillsSection() {
       <div className="w-full max-w-7xl px-4 pt-12 pb-6 md:py-0">
         <div className="grid items-start md:items-center gap-8 md:grid-cols-2">
           {/* ESQUERDA — título + descrição */}
-          <motion.div className="text-left" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={fadeInUp}>
+          <motion.div className="text-left" initial="hidden" animate={isActive ? "show" : "hidden"} variants={fadeInUp}>
             <p className="text-xs uppercase tracking-[0.3em] text-slate-300/80">
               Tecnologias & Skills
             </p>
@@ -87,7 +91,7 @@ export default function SkillsSection() {
           </motion.div>
 
           {/* DIREITA — cartão com grupos e chips (capado ao viewport + scroll interno) */}
-          <motion.div className="md:justify-self-end w-full md:max-w-2xl" initial="hidden" whileInView="show" viewport={{ once: true, amount: 0.3 }} variants={scaleIn}>
+          <motion.div className="md:justify-self-end w-full md:max-w-2xl" initial="hidden" animate={isActive ? "show" : "hidden"} variants={scaleIn}>
             <div
               className={`relative mx-auto w-full max-w-xl md:max-w-2xl
                          rounded-2xl bg-slate-900/70 shadow-xl ring-1 ring-white/10
@@ -108,8 +112,7 @@ export default function SkillsSection() {
                               ${isExpandedMobile ? "max-h-[calc(100svh-18.25rem)] overflow-y-auto" : "max-h-[calc(100svh-28.25rem)] overflow-hidden"} md:max-h-[calc(72vh-2rem)]`}
                 variants={staggerParent(0.05)}
                 initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, amount: 0.2 }}
+                animate={isActive ? "show" : "hidden"}
               >
                 {grouped.map(({ group, items }) => (
                   <div key={group} className="space-y-3">

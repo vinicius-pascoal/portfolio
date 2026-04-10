@@ -80,13 +80,13 @@ export default function Page() {
         <ProjectsCarouselSection />
 
         {/* Seção 2 - Ondas */}
-        < AboutSection />
+        <AboutSection isActive={mode === 1} />
 
         {/* Seção 3 - Ondas das laterais */}
-        <SkillsSection />
+        <SkillsSection isActive={mode === 2} />
 
         {/* Seção 4 - Bolha central */}
-        <ContactSection />
+        <ContactSection isActive={mode === 3} />
       </div>
 
       <div className="pointer-events-none fixed bottom-6 left-1/2 -translate-x-1/2 text-slate-300/80 text-xs tracking-wide">

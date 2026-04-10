@@ -6,7 +6,11 @@ import { fadeInUp, scaleIn } from "@/components/anim";
 import paper from "@/images/cartographer.png";
 import personalImage from "@/images/perfil.jpg";
 
-export default function AboutSection() {
+type AboutSectionProps = {
+  isActive: boolean;
+};
+
+export default function AboutSection({ isActive }: AboutSectionProps) {
   return (
     <section
       data-section="true"
@@ -19,8 +23,7 @@ export default function AboutSection() {
           <motion.div
             className="text-left"
             initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.3 }}
+            animate={isActive ? "show" : "hidden"}
             variants={fadeInUp}
           >
             <p className="text-xs uppercase tracking-[0.3em] text-slate-300/80">
@@ -46,8 +49,7 @@ export default function AboutSection() {
           <motion.div
             className="md:justify-self-end w-full md:max-w-2xl"
             initial="hidden"
-            whileInView="show"
-            viewport={{ once: true, amount: 0.3 }}
+            animate={isActive ? "show" : "hidden"}
             variants={scaleIn}
           >
             <div
