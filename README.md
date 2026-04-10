@@ -84,10 +84,3 @@ src/
 Ambiente de producao (Vercel):
 
 - https://viniciusp-portfolio.vercel.app/
-
-Fluxo recomendado:
-
-```bash
-npm run build
-npm run start
-```
