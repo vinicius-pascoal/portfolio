@@ -67,7 +67,7 @@ export default function AboutSection({ isActive }: AboutSectionProps) {
                 <Image
                   src={personalImage}
                   alt="Foto de perfil de Vinicius Pascoal"
-                  className="h-full w-full object-cover"
+                  className="h-full w-full"
                   priority
                 />
               </div>
