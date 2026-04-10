@@ -58,3 +58,15 @@ body {
 .dark .custom-scrollbar {
   scrollbar-color: #6366F1 #18181B;
 }
+
+@media (max-width: 767px) {
+  .mobile-snap-container {
+    scroll-behavior: auto;
+    overscroll-behavior-y: contain;
+    touch-action: pan-y;
+  }
+
+  .mobile-snap-container [data-section="true"] {
+    scroll-snap-stop: always;
+  }
+}
