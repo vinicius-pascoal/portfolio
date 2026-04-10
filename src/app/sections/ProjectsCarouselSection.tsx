@@ -65,17 +65,17 @@ export default function ProjectsCarouselSection({ isActive }: ProjectsCarouselSe
       data-index={0}
       className="snap-start h-[100svh] w-full flex justify-center items-start md:items-center bg-transparent text-white"
     >
-      <div className="w-full max-w-7xl px-4 pt-16 pb-8 sm:px-6 md:py-0">
-        <div className="grid items-center gap-6 md:gap-8 md:grid-cols-2">
+      <div className="w-full max-w-7xl px-4 pt-8 pb-6 sm:px-6 sm:pt-10 md:py-0">
+        <div className="grid items-center gap-5 md:gap-8 md:grid-cols-2">
           {/* ESQUERDA — título + descrição do atalho */}
           <div className="text-center md:text-left">
             <p className="text-[11px] sm:text-xs uppercase tracking-[0.28em] text-slate-300/80">
               Projetos em destaque
             </p>
-            <h2 className="mt-2 text-2xl sm:text-3xl md:text-5xl font-extrabold">
+            <h2 className="mt-1 text-2xl sm:text-3xl md:mt-2 md:text-5xl font-extrabold">
               Meus projetos web
             </h2>
-            <p className="mt-3 md:mt-4 mx-auto md:mx-0 max-w-prose text-sm sm:text-base text-slate-300/90 leading-relaxed">
+            <p className="mt-2 md:mt-4 mx-auto md:mx-0 max-w-prose text-sm sm:text-base text-slate-300/90 leading-relaxed">
               Aqui estão alguns dos meus projetos web, desenvolvidos com foco em
               usabilidade e design responsivo.
             </p>

@@ -15,30 +15,30 @@ export default function AboutSection({ isActive }: AboutSectionProps) {
     <section
       data-section="true"
       data-index={1}
-      className="snap-start h-[100svh] w-full flex justify-center items-start md:items-center bg-transparent"
+      className="snap-start h-[100svh] w-full flex justify-center items-start md:items-center bg-transparent overflow-hidden"
     >
-      <div className="w-full max-w-7xl px-4 pt-16 pb-8 md:py-0">
-        <div className="grid items-start md:items-center gap-8 md:grid-cols-2">
+      <div className="w-full max-w-7xl px-4 pt-8 pb-6 sm:px-6 sm:pt-10 md:px-8 md:py-0">
+        <div className="grid items-start gap-5 md:items-center md:grid-cols-2 md:gap-8">
           {/* ESQUERDA — título + texto "sobre mim" */}
           <motion.div
-            className="text-left"
+            className="text-center md:text-left"
             initial="hidden"
             animate={isActive ? "show" : "hidden"}
             variants={fadeInUp}
           >
-            <p className="text-xs uppercase tracking-[0.3em] text-slate-300/80">
+            <p className="text-[11px] sm:text-xs uppercase tracking-[0.28em] text-slate-300/80">
               Sobre mim
             </p>
-            <h2 className="mt-2 text-3xl md:text-5xl font-extrabold text-white drop-shadow">
+            <h2 className="mt-1 text-2xl sm:text-3xl md:mt-2 md:text-5xl font-extrabold text-white drop-shadow">
               Quem sou e o que faço
             </h2>
 
-            <p className="mt-4 max-w-prose text-slate-300/90 leading-relaxed">
+            <p className="mx-auto mt-2 max-w-prose text-sm sm:text-base text-slate-300/90 leading-relaxed md:mx-0 md:mt-4">
               Sou um desenvolvedor apaixonado por criar experiências digitais
               que combinam performance, acessibilidade e design.
             </p>
 
-            <p className="mt-3 max-w-prose text-slate-300/90 leading-relaxed">
+            <p className="mx-auto mt-2 max-w-prose text-sm sm:text-base text-slate-300/90 leading-relaxed md:mx-0 md:mt-3">
               Aqui você encontrará alguns projetos e experimentos que gosto de
               construir no tempo livre, sempre com foco em qualidade e cuidado
               com os detalhes.
@@ -47,13 +47,13 @@ export default function AboutSection({ isActive }: AboutSectionProps) {
 
           {/* DIREITA — cartão visual (estética da seção anterior) */}
           <motion.div
-            className="md:justify-self-end w-full md:max-w-2xl"
+            className="w-full md:justify-self-end md:max-w-2xl"
             initial="hidden"
             animate={isActive ? "show" : "hidden"}
             variants={scaleIn}
           >
             <div
-              className="relative mx-auto w-72 sm:w-80 md:w-96 rounded-2xl bg-slate-900/70 shadow-xl ring-1 ring-white/10 overflow-hidden"
+              className="relative mx-auto flex w-full max-w-sm flex-col overflow-hidden rounded-2xl bg-slate-900/70 shadow-xl ring-1 ring-white/10 sm:max-w-md md:aspect-square md:max-w-[28rem]"
               style={{
                 backgroundImage: `url(${paper.src})`,
                 backgroundSize: "cover",
@@ -63,20 +63,20 @@ export default function AboutSection({ isActive }: AboutSectionProps) {
               }}
             >
               <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-sky-400/10 via-transparent to-indigo-500/10" />
-              <div className="h-56 w-full overflow-hidden">
+              <div className="aspect-[4/3] w-full overflow-hidden sm:aspect-[16/10] md:flex-1 md:aspect-auto md:min-h-0">
                 <Image
                   src={personalImage}
                   alt="Foto de perfil de Vinicius Pascoal"
-                  className="h-full w-full"
+                  className="h-full w-full object-cover object-center"
                   priority
                 />
               </div>
 
-              <div className="p-4">
-                <h3 className="text-lg font-semibold text-slate-200">
+              <div className="mt-auto p-4 sm:p-5 md:p-6">
+                <h3 className="text-base sm:text-lg font-semibold text-slate-200">
                   Vinicius Pascoal
                 </h3>
-                <p className="mt-1 text-sm text-slate-300/90">
+                <p className="mt-1 text-xs sm:text-sm text-slate-300/90">
                   Desenvolvedor Full-stack
                 </p>
               </div>

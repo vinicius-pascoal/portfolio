@@ -74,18 +74,18 @@ export default function SkillsSection({ isActive }: SkillsSectionProps) {
       data-index={2}
       className="snap-start h-[100svh] w-full flex justify-center items-start md:items-center bg-transparent overflow-hidden"
     >
-      <div className="w-full max-w-7xl px-4 pt-12 pb-6 md:py-0">
-        <div className="grid items-start md:items-center gap-8 md:grid-cols-2">
+      <div className="w-full max-w-7xl px-4 pt-8 pb-6 sm:px-6 sm:pt-10 md:py-0">
+        <div className="grid items-start gap-5 md:items-center md:grid-cols-2 md:gap-8">
           {/* ESQUERDA — título + descrição */}
           <motion.div className="text-left" initial="hidden" animate={isActive ? "show" : "hidden"} variants={fadeInUp}>
             <p className="text-xs uppercase tracking-[0.3em] text-slate-300/80">
               Tecnologias & Skills
             </p>
-            <h2 className="mt-2 text-3xl md:text-5xl font-extrabold text-white drop-shadow">
+            <h2 className="mt-1 text-2xl sm:text-3xl md:mt-2 md:text-5xl font-extrabold text-white drop-shadow">
               Minha stack e ferramentas
             </h2>
 
-            <p className="mt-4 max-w-prose text-slate-300/90 leading-relaxed">
+            <p className="mt-2 max-w-prose text-sm sm:text-base text-slate-300/90 leading-relaxed md:mt-4">
               Aqui estão as tecnologias e ferramentas que utilizo no dia a dia.
             </p>
           </motion.div>
