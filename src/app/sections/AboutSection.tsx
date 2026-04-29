@@ -5,12 +5,14 @@ import { motion } from "framer-motion";
 import { fadeInUp, scaleIn } from "@/components/anim";
 import paper from "@/images/cartographer.png";
 import personalImage from "@/images/perfil.jpg";
+import type { PortfolioContent } from "@/lib/portfolioContent";
 
 type AboutSectionProps = {
   isActive: boolean;
+  content: PortfolioContent["aboutSection"];
 };
 
-export default function AboutSection({ isActive }: AboutSectionProps) {
+export default function AboutSection({ isActive, content }: AboutSectionProps) {
   return (
     <section
       data-section="true"
@@ -27,21 +29,18 @@ export default function AboutSection({ isActive }: AboutSectionProps) {
             variants={fadeInUp}
           >
             <p className="text-[11px] sm:text-xs uppercase tracking-[0.28em] text-slate-300/80">
-              Sobre mim
+              {content.eyebrow}
             </p>
             <h2 className="mt-1 text-2xl sm:text-3xl md:mt-2 md:text-5xl font-extrabold text-white drop-shadow">
-              Quem sou e o que faço
+              {content.title}
             </h2>
 
             <p className="mx-auto mt-2 max-w-prose text-sm sm:text-base text-slate-300/90 leading-relaxed md:mx-0 md:mt-4">
-              Sou um desenvolvedor apaixonado por criar experiências digitais
-              que combinam performance, acessibilidade e design.
+              {content.paragraphs[0]}
             </p>
 
             <p className="mx-auto mt-2 max-w-prose text-sm sm:text-base text-slate-300/90 leading-relaxed md:mx-0 md:mt-3">
-              Aqui você encontrará alguns projetos e experimentos que gosto de
-              construir no tempo livre, sempre com foco em qualidade e cuidado
-              com os detalhes.
+              {content.paragraphs[1]}
             </p>
           </motion.div>
 
@@ -77,7 +76,7 @@ export default function AboutSection({ isActive }: AboutSectionProps) {
                   Vinicius Pascoal
                 </h3>
                 <p className="mt-1 text-xs sm:text-sm text-slate-300/90">
-                  Desenvolvedor Full-stack
+                  {content.role}
                 </p>
               </div>
 

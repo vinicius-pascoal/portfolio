@@ -7,9 +7,10 @@ import { fadeInUp, scaleIn, staggerParent, itemPop } from "@/components/anim";
 import paper from "@/images/cartographer.png";
 import {
   Mail, Phone, MapPin, MessageCircle,
-  Github, Linkedin, Instagram, Twitter, Globe,
-  Copy, Check, Send
+  Github, Linkedin, Instagram,
+  Copy, Check
 } from "lucide-react";
+import type { PortfolioContent } from "@/lib/portfolioContent";
 
 type ContactItem = {
   key: string;
@@ -26,24 +27,25 @@ type SocialItem = {
   icon: React.FC<React.SVGProps<SVGSVGElement>>;
 };
 
-const CONTACTS: ContactItem[] = [
-  { key: "email", label: "E-mail", value: "viniciuspascoal013@gmail.com", icon: Mail },
-  { key: "whatsapp", label: "WhatsApp", value: "+55 (79) 99175-0501", href: "https://wa.me/5579991750501", icon: MessageCircle },
-  { key: "phone", label: "Telefone", value: "+55 (79) 99175-0501", href: "tel:+5579991750501", icon: Phone },
-  { key: "city", label: "Local", value: "ARACAJU", icon: MapPin },
-];
+const CONTACT_ICONS: Record<string, React.FC<React.SVGProps<SVGSVGElement>>> = {
+  email: Mail,
+  whatsapp: MessageCircle,
+  phone: Phone,
+  city: MapPin,
+};
 
-const SOCIALS: SocialItem[] = [
-  { key: "github", label: "GitHub", href: "https://github.com/vinicius-pascoal", icon: Github },
-  { key: "linkedin", label: "LinkedIn", href: "https://www.linkedin.com/in/vinicius-pascoal-queiroz-maynard-38854024a", icon: Linkedin },
-  { key: "instagram", label: "Instagram", href: "https://www.instagram.com/vinicius_pascoal_q", icon: Instagram },
-];
+const SOCIAL_ICONS: Record<string, React.FC<React.SVGProps<SVGSVGElement>>> = {
+  github: Github,
+  linkedin: Linkedin,
+  instagram: Instagram,
+};
 
 type ContactSectionProps = {
   isActive: boolean;
+  content: PortfolioContent["contactSection"];
 };
 
-export default function ContactSection({ isActive }: ContactSectionProps) {
+export default function ContactSection({ isActive, content }: ContactSectionProps) {
   const [copied, setCopied] = useState<string | null>(null);
 
   const copy = async (text: string, key: string) => {
@@ -69,15 +71,14 @@ export default function ContactSection({ isActive }: ContactSectionProps) {
             variants={fadeInUp}
           >
             <p className="text-[11px] sm:text-xs uppercase tracking-[0.28em] text-slate-300/80">
-              Contato & Redes
+              {content.eyebrow}
             </p>
             <h2 className="mt-1 text-2xl sm:text-3xl md:mt-2 md:text-5xl font-extrabold text-white drop-shadow">
-              Vamos conversar?
+              {content.title}
             </h2>
 
             <p className="mt-2 text-sm sm:text-base text-slate-300/90 leading-relaxed md:mt-4">
-              Curtiu o portfólio e quer trocar uma ideia, sugerir colaboração ou
-              conversar sobre oportunidades? Me chama pelos canais abaixo.
+              {content.description}
             </p>
           </motion.div>
 
@@ -106,78 +107,86 @@ export default function ContactSection({ isActive }: ContactSectionProps) {
               >
                 <div className="space-y-3">
                   <h3 className="text-sm font-semibold tracking-wide text-slate-200/90">
-                    Contato direto
+                    {content.directContact}
                   </h3>
                   <ul className="space-y-2">
-                    {CONTACTS.map(({ key, label, value, href, icon: Icon }) => (
-                      <motion.li key={key} variants={itemPop}>
-                        <div className="flex items-start sm:items-center justify-between gap-3 rounded-xl border border-white/10 bg-slate-900/60 px-3 py-2 text-sm text-slate-200 shadow-sm">
-                          <div className="flex items-center gap-3 min-w-0 flex-1">
-                            <Icon className="h-4 w-4 opacity-80 shrink-0" aria-hidden="true" />
-                            <div className="min-w-0">
-                              <p className="text-slate-400">{label}</p>
-                              <p className="font-medium break-all sm:break-normal sm:truncate">{value}</p>
+                    {content.contacts.map(({ key, label, value, href }) => {
+                      const Icon = CONTACT_ICONS[key] ?? Mail;
+
+                      return (
+                        <motion.li key={key} variants={itemPop}>
+                          <div className="flex items-start sm:items-center justify-between gap-3 rounded-xl border border-white/10 bg-slate-900/60 px-3 py-2 text-sm text-slate-200 shadow-sm">
+                            <div className="flex items-center gap-3 min-w-0 flex-1">
+                              <Icon className="h-4 w-4 opacity-80 shrink-0" aria-hidden="true" />
+                              <div className="min-w-0">
+                                <p className="text-slate-400">{label}</p>
+                                <p className="font-medium break-all sm:break-normal sm:truncate">{value}</p>
+                              </div>
+                            </div>
+
+                            <div className="flex flex-wrap justify-end items-center gap-2 shrink-0">
+                              {href && key !== "phone" && (
+                                <a
+                                  href={href}
+                                  target={href.startsWith("http") ? "_blank" : undefined}
+                                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                                  className="rounded-lg border border-white/10 bg-slate-800/50 px-2 py-1 text-xs hover:bg-slate-900/30"
+                                  aria-label={`${content.open} ${label}`}
+                                  title={`${content.open} ${label}`}
+                                >
+                                  {content.open}
+                                </a>
+                              )}
+                              {key !== "whatsapp" && (
+                                <button
+                                  onClick={() => copy(value, key)}
+                                  className="inline-flex items-center gap-1 rounded-lg border border-white/10 bg-slate-800/50 px-2 py-1 text-xs hover:bg-slate-900/30"
+                                  aria-label={`${content.copy} ${label}`}
+                                  title={`${content.copy} ${label}`}
+                                >
+                                  {copied === key ? (
+                                    <>
+                                      <Check className="h-3.5 w-3.5" /> {content.copied}
+                                    </>
+                                  ) : (
+                                    <>
+                                      <Copy className="h-3.5 w-3.5" /> {content.copy}
+                                    </>
+                                  )}
+                                </button>
+                              )}
                             </div>
                           </div>
-
-                          <div className="flex flex-wrap justify-end items-center gap-2 shrink-0">
-                            {href && key !== "phone" && (
-                              <a
-                                href={href}
-                                target={href.startsWith("http") ? "_blank" : undefined}
-                                rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
-                                className="rounded-lg border border-white/10 bg-slate-800/50 px-2 py-1 text-xs hover:bg-slate-900/30"
-                                aria-label={`Abrir ${label}`}
-                                title={`Abrir ${label}`}
-                              >
-                                Abrir
-                              </a>
-                            )}
-                            {key !== "whatsapp" && (
-                              <button
-                                onClick={() => copy(value, key)}
-                                className="inline-flex items-center gap-1 rounded-lg border border-white/10 bg-slate-800/50 px-2 py-1 text-xs hover:bg-slate-900/30"
-                                aria-label={`Copiar ${label}`}
-                                title={`Copiar ${label}`}
-                              >
-                                {copied === key ? (
-                                  <>
-                                    <Check className="h-3.5 w-3.5" /> Copiado
-                                  </>
-                                ) : (
-                                  <>
-                                    <Copy className="h-3.5 w-3.5" /> Copiar
-                                  </>
-                                )}
-                              </button>
-                            )}
-                          </div>
-                        </div>
-                      </motion.li>
-                    ))}
+                        </motion.li>
+                      );
+                    })}
                   </ul>
                 </div>
 
                 <div className="space-y-3">
                   <h3 className="text-sm font-semibold tracking-wide text-slate-200/90">
-                    Redes sociais
+                    {content.socialNetworks}
                   </h3>
                   <ul className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 justify-items-center">
-                    {SOCIALS.map(({ key, label, href, icon: Icon }) => (
-                      <motion.li key={key} className="w-full" variants={itemPop}>
-                        <a
-                          href={href}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-slate-900/60 px-3 py-2 text-sm text-slate-200 shadow-sm hover:shadow-md transition-all"
-                          title={label}
-                          aria-label={label}
-                        >
-                          <Icon className="h-4 w-4 opacity-80" aria-hidden="true" />
-                          <span className="truncate">{label}</span>
-                        </a>
-                      </motion.li>
-                    ))}
+                    {content.socials.map(({ key, label, href }) => {
+                      const Icon = SOCIAL_ICONS[key] ?? Github;
+
+                      return (
+                        <motion.li key={key} className="w-full" variants={itemPop}>
+                          <a
+                            href={href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group flex items-center justify-center gap-2 rounded-xl border border-white/10 bg-slate-900/60 px-3 py-2 text-sm text-slate-200 shadow-sm hover:shadow-md transition-all"
+                            title={label}
+                            aria-label={label}
+                          >
+                            <Icon className="h-4 w-4 opacity-80" aria-hidden="true" />
+                            <span className="truncate">{label}</span>
+                          </a>
+                        </motion.li>
+                      );
+                    })}
                   </ul>
                 </div>
               </motion.div>

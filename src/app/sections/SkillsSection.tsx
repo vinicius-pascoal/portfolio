@@ -6,8 +6,9 @@ import React from "react";
 import { motion } from "framer-motion";
 import { fadeInUp, staggerParent, itemPop, scaleIn } from "@/components/anim";
 import paper from "@/images/cartographer.png";
+import type { PortfolioContent } from "@/lib/portfolioContent";
 
-type Group = "Linguagens" | "Frameworks & Libs" | "Back-end & DB" | "Ferramentas";
+type Group = "languages" | "frameworks" | "backend" | "tools";
 
 export type Skill = {
   key: string;
@@ -18,49 +19,50 @@ export type Skill = {
 
 const SKILLS: Skill[] = [
   // Linguagens
-  { key: "java", label: "Java", group: "Linguagens", icon: Code2 },
-  { key: "python", label: "Python", group: "Linguagens", icon: Code2 },
-  { key: "typescript", label: "TypeScript", group: "Linguagens", icon: Code2 },
-  { key: "javascript", label: "JavaScript", group: "Linguagens", icon: Code2 },
-  { key: "dart", label: "Dart", group: "Linguagens", icon: Code2 },
-  { key: "csharp", label: "C#", group: "Linguagens", icon: Code2 },
-  { key: "html", label: "HTML5", group: "Linguagens", icon: Code2 },
-  { key: "css", label: "CSS3", group: "Linguagens", icon: Code2 },
-  { key: "sql", label: "SQL", group: "Linguagens", icon: Code2 },
+  { key: "java", label: "Java", group: "languages", icon: Code2 },
+  { key: "python", label: "Python", group: "languages", icon: Code2 },
+  { key: "typescript", label: "TypeScript", group: "languages", icon: Code2 },
+  { key: "javascript", label: "JavaScript", group: "languages", icon: Code2 },
+  { key: "dart", label: "Dart", group: "languages", icon: Code2 },
+  { key: "csharp", label: "C#", group: "languages", icon: Code2 },
+  { key: "html", label: "HTML5", group: "languages", icon: Code2 },
+  { key: "css", label: "CSS3", group: "languages", icon: Code2 },
+  { key: "sql", label: "SQL", group: "languages", icon: Code2 },
 
   // Frameworks & Libs
-  { key: "vue", label: "Vue", group: "Frameworks & Libs", icon: Boxes },
-  { key: "react", label: "React", group: "Frameworks & Libs", icon: Layers },
-  { key: "next", label: "Next.js", group: "Frameworks & Libs", icon: Rocket },
-  { key: "tailwind", label: "Tailwind CSS", group: "Frameworks & Libs", icon: Boxes },
-  { key: "flutter", label: "Flutter", group: "Frameworks & Libs", icon: Boxes },
-  { key: "unity", label: "Unity", group: "Frameworks & Libs", icon: Boxes },
-  { key: "express", label: "Express", group: "Frameworks & Libs", icon: Server },
-  { key: "spring", label: "Spring Boot", group: "Frameworks & Libs", icon: Server },
+  { key: "vue", label: "Vue", group: "frameworks", icon: Boxes },
+  { key: "react", label: "React", group: "frameworks", icon: Layers },
+  { key: "next", label: "Next.js", group: "frameworks", icon: Rocket },
+  { key: "tailwind", label: "Tailwind CSS", group: "frameworks", icon: Boxes },
+  { key: "flutter", label: "Flutter", group: "frameworks", icon: Boxes },
+  { key: "unity", label: "Unity", group: "frameworks", icon: Boxes },
+  { key: "express", label: "Express", group: "frameworks", icon: Server },
+  { key: "spring", label: "Spring Boot", group: "frameworks", icon: Server },
 
   // Back-end & DB
-  { key: "node", label: "Node.js", group: "Back-end & DB", icon: Server },
-  { key: "prisma", label: "Prisma", group: "Back-end & DB", icon: Database },
-  { key: "mysql", label: "MySQL", group: "Back-end & DB", icon: Database },
-  { key: "postgresql", label: "PostgreSQL", group: "Back-end & DB", icon: Database },
-  { key: "mongodb", label: "MongoDB", group: "Back-end & DB", icon: Database },
+  { key: "node", label: "Node.js", group: "backend", icon: Server },
+  { key: "prisma", label: "Prisma", group: "backend", icon: Database },
+  { key: "mysql", label: "MySQL", group: "backend", icon: Database },
+  { key: "postgresql", label: "PostgreSQL", group: "backend", icon: Database },
+  { key: "mongodb", label: "MongoDB", group: "backend", icon: Database },
 
   // Ferramentas
-  { key: "postman", label: "Postman", group: "Ferramentas", icon: Send },
-  { key: "docker", label: "Docker", group: "Ferramentas", icon: Boxes },
-  { key: "git", label: "Git", group: "Ferramentas", icon: Boxes },
-  { key: "github", label: "GitHub", group: "Ferramentas", icon: Boxes },
-  { key: "beekeeper", label: "Beekeeper Studio", group: "Ferramentas", icon: Database },
-  { key: "vscode", label: "VS Code", group: "Ferramentas", icon: Boxes },
+  { key: "postman", label: "Postman", group: "tools", icon: Send },
+  { key: "docker", label: "Docker", group: "tools", icon: Boxes },
+  { key: "git", label: "Git", group: "tools", icon: Boxes },
+  { key: "github", label: "GitHub", group: "tools", icon: Boxes },
+  { key: "beekeeper", label: "Beekeeper Studio", group: "tools", icon: Database },
+  { key: "vscode", label: "VS Code", group: "tools", icon: Boxes },
 ];
 
-const GROUP_ORDER: Group[] = ["Linguagens", "Frameworks & Libs", "Back-end & DB", "Ferramentas"];
+const GROUP_ORDER: Group[] = ["languages", "frameworks", "backend", "tools"];
 
 type SkillsSectionProps = {
   isActive: boolean;
+  content: PortfolioContent["skillsSection"];
 };
 
-export default function SkillsSection({ isActive }: SkillsSectionProps) {
+export default function SkillsSection({ isActive, content }: SkillsSectionProps) {
   const [isExpandedMobile, setIsExpandedMobile] = React.useState(false);
   const [isMobile, setIsMobile] = React.useState(false);
 
@@ -96,14 +98,14 @@ export default function SkillsSection({ isActive }: SkillsSectionProps) {
           {/* ESQUERDA — título + descrição */}
           <motion.div className="text-left" initial="hidden" animate={isActive ? "show" : "hidden"} variants={fadeInUp}>
             <p className="text-xs uppercase tracking-[0.3em] text-slate-300/80">
-              Tecnologias & Skills
+              {content.eyebrow}
             </p>
             <h2 className="mt-1 text-xl sm:text-3xl md:mt-2 md:text-5xl font-extrabold text-white drop-shadow">
-              Minha stack e ferramentas
+              {content.title}
             </h2>
 
             <p className="mt-2 max-w-prose text-xs sm:text-base text-slate-300/90 leading-relaxed md:mt-4">
-              Aqui estão as tecnologias e ferramentas que utilizo no dia a dia.
+              {content.description}
             </p>
           </motion.div>
 
@@ -134,7 +136,7 @@ export default function SkillsSection({ isActive }: SkillsSectionProps) {
                 {visibleGroups.map(({ group, items }) => (
                   <div key={group} className="space-y-3">
                     <h3 className="text-xs md:text-sm font-semibold tracking-wide text-slate-200 ">
-                      {group}
+                      {content.groupLabels[group]}
                     </h3>
 
                     <ul className="grid grid-cols-2 sm:grid-cols-3 gap-2">
@@ -166,7 +168,7 @@ export default function SkillsSection({ isActive }: SkillsSectionProps) {
                   className="w-full rounded-xl border border-white/20 bg-slate-900/80 px-4 py-2.5 text-sm font-semibold text-slate-100 shadow-sm transition-all hover:bg-slate-800/85 active:scale-[0.99]"
                   aria-expanded={isExpandedMobile}
                 >
-                  {isExpandedMobile ? "Exibir menos" : "Exibir mais"}
+                  {isExpandedMobile ? content.showLess : content.showMore}
                 </button>
               </div>
 

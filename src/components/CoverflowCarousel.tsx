@@ -3,6 +3,7 @@
 
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import paper from "@/images/cartographer.png";
+import type { CarouselLabels } from "@/lib/portfolioContent";
 
 export type CoverflowItem = {
   id: string | number;
@@ -15,6 +16,7 @@ export type CoverflowItem = {
 type Props = {
   items: CoverflowItem[];
   className?: string;
+  labels: CarouselLabels;
 };
 
 function clamp(n: number, a: number, b: number) {
@@ -37,7 +39,7 @@ function circularOffset(itemIndex: number, activeIndex: number, length: number) 
   return offset;
 }
 
-export default function CoverflowCarousel({ items, className }: Props) {
+export default function CoverflowCarousel({ items, className, labels }: Props) {
   const [index, setIndex] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
   const trackRef = useRef<HTMLDivElement | null>(null);
@@ -165,11 +167,11 @@ export default function CoverflowCarousel({ items, className }: Props) {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="mt-2 inline-flex rounded-full border border-white/20 bg-slate-900/70 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-[0.12em] text-slate-100 md:px-2.5 md:py-1 md:text-[10px] md:tracking-[0.16em]"
-                      aria-label={`Visualizar ${item.title ?? "projeto"}`}
-                      title={`Visualizar ${item.title ?? "projeto"}`}
+                      aria-label={`${labels.viewProject} ${item.title ?? "projeto"}`}
+                      title={`${labels.viewProject} ${item.title ?? "projeto"}`}
                     >
-                      <span className="md:hidden">Visualizar</span>
-                      <span className="hidden md:inline">Visualizar projeto</span>
+                      <span className="md:hidden">{labels.viewProject}</span>
+                      <span className="hidden md:inline">{labels.viewProjectExpanded}</span>
                     </a>
                   )}
                 </div>
@@ -211,7 +213,7 @@ export default function CoverflowCarousel({ items, className }: Props) {
             go(-1);
           }}
           className="absolute left-0 top-0 bottom-0 z-[9999] hidden w-14 items-center justify-center md:flex"
-          aria-label="Anterior"
+          aria-label={labels.previous}
         >
           <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-sm text-white transition-colors hover:bg-white/30">
             ◀
@@ -230,7 +232,7 @@ export default function CoverflowCarousel({ items, className }: Props) {
             go(1);
           }}
           className="absolute right-0 top-0 bottom-0 z-[9999] hidden w-14 items-center justify-center md:flex"
-          aria-label="Próximo"
+          aria-label={labels.next}
         >
           <span className="inline-flex h-11 w-11 items-center justify-center rounded-full bg-white/15 text-sm text-white transition-colors hover:bg-white/30">
             ▶
@@ -244,7 +246,7 @@ export default function CoverflowCarousel({ items, className }: Props) {
           className="flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-3 py-1.5 text-[11px] tracking-wide text-white/80 backdrop-blur"
         >
           <span className="text-white/70">◀</span>
-          <span>Deslize para navegar</span>
+          <span>{labels.swipeHint}</span>
           <span className="text-white/70">▶</span>
         </div>
       </div>
@@ -255,7 +257,7 @@ export default function CoverflowCarousel({ items, className }: Props) {
           <button
             key={i}
             onClick={() => setIndex(i)}
-            aria-label={`Ir para slide ${i + 1}`}
+            aria-label={`${labels.slideLabelPrefix} ${i + 1}`}
             className={[
               "h-1.5 w-6 rounded-full transition-all",
               i === index ? "bg-white" : "bg-white/30 hover:bg-white/50",
