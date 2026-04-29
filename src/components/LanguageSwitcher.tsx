@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { ChevronDown } from "lucide-react";
+import paper from "@/images/cartographer.png";
 import { locales, type Locale } from "@/lib/portfolioContent";
 
 type LanguageSwitcherProps = {
@@ -23,17 +24,33 @@ export default function LanguageSwitcher({ locale, labels, ariaLabel }: Language
     <details className="group fixed left-1 top-1 z-30">
       <summary
         aria-label={ariaLabel}
-        className="flex cursor-pointer list-none items-center gap-2 rounded-full border border-white/10 bg-slate-950/70 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-100 shadow-xl ring-1 ring-white/10 backdrop-blur-md transition-all hover:bg-slate-900/80 hover:text-white"
+        className="relative flex cursor-pointer list-none items-center gap-2 overflow-hidden rounded-2xl border border-white/10 bg-slate-900/70 px-3 py-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-100 shadow-xl ring-1 ring-white/10 backdrop-blur-md transition-all hover:shadow-2xl"
+        style={{
+          boxShadow: "0 4px 20px rgba(0, 0, 0, 0.5)",
+          backgroundImage: `url(${paper.src})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
       >
+        <div className="absolute inset-0 pointer-events-none bg-gradient-to-br from-sky-400/10 via-transparent to-indigo-500/10" />
         <span className="text-sm leading-none">{currentFlag}</span>
-        <span>{labels[locale]}</span>
+        <span className="relative z-10">{labels[locale]}</span>
         <ChevronDown className="h-3.5 w-3.5 transition-transform group-open:rotate-180" aria-hidden="true" />
       </summary>
 
       <nav
         aria-label={ariaLabel}
-        className="mt-2 w-32 overflow-hidden rounded-2xl border border-white/10 bg-slate-950/90 p-1 shadow-2xl ring-1 ring-black/20 backdrop-blur-md"
+        className="mt-2 w-36 overflow-hidden rounded-2xl border border-white/10 bg-slate-900/75 p-1 shadow-2xl ring-1 ring-white/10 backdrop-blur-md"
+        style={{
+          boxShadow: "0 12px 30px rgba(0, 0, 0, 0.45)",
+          backgroundImage: `url(${paper.src})`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundRepeat: "no-repeat",
+        }}
       >
+        <div className="pointer-events-none absolute inset-0 bg-gradient-to-br from-sky-400/10 via-transparent to-indigo-500/10" />
         {locales.map((item) => {
           const active = item === locale;
 
@@ -42,8 +59,10 @@ export default function LanguageSwitcher({ locale, labels, ariaLabel }: Language
               key={item}
               href={`/${item}`}
               className={[
-                "flex items-center gap-2 rounded-xl px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] transition-all",
-                active ? "bg-white text-slate-900 shadow-sm" : "text-slate-200/90 hover:bg-white/10 hover:text-white",
+                "relative z-10 flex items-center gap-2 rounded-xl px-3 py-2 text-[11px] font-semibold uppercase tracking-[0.16em] transition-all",
+                active
+                  ? "bg-white text-slate-900 shadow-sm"
+                  : "text-slate-200/90 hover:bg-white/10 hover:text-white",
               ].join(" ")}
               aria-current={active ? "page" : undefined}
             >
